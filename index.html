@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ฝากเงินที่ไหนดี</title>
+<style>
+:root{
+  --bg:#f3faf5; --card:#ffffff; --ink:#1c2b24; --muted:#62756c; --line:#e2eee6;
+  --green:#14a254; --green-ink:#ffffff; --green-soft:#e5f7ec;
+  --sun:#ffb423; --sun-soft:#fff5d9; --sky:#2f8fde; --sky-soft:#e6f2fc;
+  --tax:#e06a3a; --warn:#b26a00; --warn-soft:#fff1d6;
+  --bar:#9fdcb7; --bar-top:#14a254;
+  --hero:linear-gradient(135deg,#e3f8eb 0%,#fff6dc 100%);
+  --shadow:0 4px 18px rgba(20,90,50,.07);
+  --page:
+    radial-gradient(ellipse 60% 45% at 0% 0%, #c9f2db 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 100% 8%, #ffeab0 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 100% 100%, #cfe8ff 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 0% 95%, #ffe0cc 0%, transparent 70%),
+    linear-gradient(180deg,#f4fcf7 0%,#f8fbff 100%);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1712; --card:#17221c; --ink:#e9f3ed; --muted:#9fb3a8; --line:#25352c;
+    --green:#3fd07f; --green-ink:#08160e; --green-soft:#16301f;
+    --sun:#ffc44d; --sun-soft:#33290f; --sky:#62b2f0; --sky-soft:#142a3b;
+    --tax:#f3926a; --warn:#f5c066; --warn-soft:#352a12;
+    --bar:#2c7a4d; --bar-top:#3fd07f;
+    --hero:linear-gradient(135deg,#163222 0%,#2e2810 100%); --shadow:none;
+    --page:
+      radial-gradient(ellipse 60% 45% at 0% 0%, #123524 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 100% 8%, #2f2711 0%, transparent 70%),
+      radial-gradient(ellipse 55% 45% at 100% 100%, #11283d 0%, transparent 70%),
+      #0f1712;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1712; --card:#17221c; --ink:#e9f3ed; --muted:#9fb3a8; --line:#25352c;
+  --green:#3fd07f; --green-ink:#08160e; --green-soft:#16301f;
+  --sun:#ffc44d; --sun-soft:#33290f; --sky:#62b2f0; --sky-soft:#142a3b;
+  --tax:#f3926a; --warn:#f5c066; --warn-soft:#352a12;
+  --bar:#2c7a4d; --bar-top:#3fd07f;
+  --hero:linear-gradient(135deg,#163222 0%,#2e2810 100%); --shadow:none;
+  --page:
+    radial-gradient(ellipse 60% 45% at 0% 0%, #123524 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 100% 8%, #2f2711 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 100% 100%, #11283d 0%, transparent 70%),
+    #0f1712;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;background:var(--page);background-color:var(--bg);background-attachment:fixed;color:var(--ink);
+  font-family:"Sarabun","Leelawadee UI","Noto Sans Thai","Tahoma",system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
+header{text-align:center;margin-bottom:22px}
+header .logo{font-size:2.6rem;line-height:1}
+h1{font-size:1.9rem;margin:6px 0 4px}
+h2{font-size:1.25rem;margin:0 0 14px}
+.sub{color:var(--muted);margin:0}
+.pill{display:inline-block;background:var(--green-soft);color:var(--green);font-weight:700;font-size:.85rem;
+  padding:3px 12px;border-radius:999px;margin-top:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px;box-shadow:var(--shadow)}
+.inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.lbl{display:block;font-weight:700;margin-bottom:8px}
+.field{position:relative}
+.field input{width:100%;padding:13px 62px 13px 16px;font-size:1.5rem;font-weight:700;border:2px solid var(--line);
+  border-radius:14px;background:var(--bg);color:var(--ink);font-family:inherit;font-variant-numeric:tabular-nums}
+.field input:focus{outline:none;border-color:var(--green);background:var(--card)}
+.field .unit{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.chip{font-family:inherit;font-size:.9rem;padding:5px 13px;border-radius:999px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);cursor:pointer}
+.chip:hover{border-color:var(--green)}
+.chip.on{background:var(--green);border-color:var(--green);color:var(--green-ink);font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:.95rem}
+.opts label{display:flex;gap:8px;align-items:center;cursor:pointer}
+.opts input{width:18px;height:18px;accent-color:var(--green)}
+/* hero */
+.hero{position:relative;background:var(--hero);border-radius:22px;padding:26px 24px;margin-bottom:16px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.sticker{position:absolute;top:-14px;right:18px;background:var(--sun);color:#3a2600;font-weight:800;font-size:.95rem;
+  padding:6px 14px;border-radius:999px;transform:rotate(4deg);box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.hero .who{font-size:.95rem;color:var(--muted)}
+.hero .bank{font-size:1.5rem;font-weight:800;margin:2px 0 14px}
+.hero .bank small{font-weight:600;color:var(--muted);font-size:1rem}
+.hero .row{display:flex;flex-wrap:wrap;gap:12px 36px;align-items:flex-end}
+.hero .big{font-size:2.3rem;font-weight:800;color:var(--green);line-height:1.1;font-variant-numeric:tabular-nums}
+.hero .mid{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums}
+.hero .cap{font-size:.9rem;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+@media (min-width:960px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow)}
+.kpi .ic{font-size:1.5rem;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.kpi .k{color:var(--muted);font-size:.92rem}
+.kpi .v{font-size:1.55rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.3}
+.kpi .d{color:var(--muted);font-size:.82rem}
+.ic.g{background:var(--green-soft)} .ic.s{background:var(--sun-soft)} .ic.b{background:var(--sky-soft)} .ic.t{background:var(--warn-soft)}
+.v.green{color:var(--green)} .v.tax{color:var(--tax)}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 9px;border-radius:999px;white-space:nowrap}
+.tag.ok{background:var(--green-soft);color:var(--green)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+/* table */
+.head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.head h2{margin:0}
+.btn{font-family:inherit;font-size:.9rem;padding:7px 14px;border-radius:999px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--green)}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:.85rem;color:var(--muted);font-weight:600;white-space:nowrap}
+.num{text-align:right;white-space:nowrap}
+tr.first td{background:var(--sun-soft)}
+tr.sel td{background:var(--green-soft)}
+.rank{font-size:1.35rem;display:inline-block;min-width:34px;text-align:center}
+.rank.n{font-size:.95rem;font-weight:700;color:var(--muted)}
+.bname{font-weight:700}
+.pname{color:var(--muted);font-size:.92rem}
+.money{font-weight:800;font-size:1.08rem;color:var(--green)}
+.sm{font-size:.82rem;color:var(--muted)}
+.acts{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.mini{font-family:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:999px;padding:2px 10px;cursor:pointer}
+.mini:hover{border-color:var(--green)}
+tr.info td{background:var(--bg);font-size:.88rem;line-height:1.65;padding:12px 16px}
+tr.info a{color:var(--sky)}
+.warnline{color:var(--warn)}
+/* chart */
+#chart{overflow-x:auto}
+#chart svg{width:100%;min-width:700px;height:auto;display:block}
+#chart text{font-family:inherit;fill:var(--ink)}
+/* year */
+.yr td,.yr th{padding:9px 10px}
+.yr tr.total td{font-weight:800;border-bottom:none}
+/* tips */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.tip{background:var(--bg);border-radius:14px;padding:12px 14px;font-size:.92rem}
+.tip b{display:block;margin-bottom:2px}
+details.more summary{cursor:pointer;font-weight:700;font-size:1.05rem;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:" ▾";color:var(--muted)}
+details.more[open] summary::after{content:" ▴"}
+.foot{font-size:.88rem;color:var(--muted)}
+.foot ul,.foot ol{padding-left:20px;margin:8px 0}
+.foot a{color:var(--sky)}
+.note{text-align:center;font-size:.85rem;color:var(--muted);margin-top:8px}
+@media (max-width:640px){
+  body{font-size:16px} h1{font-size:1.55rem} .card{padding:16px} .hero .big{font-size:1.9rem}
+  .hide-sm{display:none}
+}
+@media print{.no-print{display:none}.card,.kpi,.hero{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🐷💰</div>
+    <h1>ฝากเงินที่ไหนดี?</h1>
+    <p class="sub">เทียบดอกเบี้ยบัญชีออมทรัพย์ · ถอนได้ทุกเมื่อ</p>
+    <span class="pill" id="checked"></span>
+  </header>
+
+  <!-- กรอกข้อมูล -->
+  <div class="card">
+    <div class="inputs">
+      <div>
+        <label class="lbl" for="amount">💵 ฝากเท่าไร</label>
+        <div class="field"><input id="amount" type="text" inputmode="numeric" value="1,000,000" autocomplete="off"><span class="unit">บาท</span></div>
+        <div class="chips" id="amountChips"></div>
+      </div>
+      <div>
+        <label class="lbl" for="months">📅 ฝากนานเท่าไร</label>
+        <div class="field"><input id="months" type="text" inputmode="numeric" value="12" autocomplete="off"><span class="unit">เดือน</span></div>
+        <div class="chips" id="monthChips"></div>
+      </div>
+    </div>
+    <div class="opts">
+      <label title="ได้เพิ่มเมื่อทำตามเงื่อนไขธนาคาร"><input id="bonus" type="checkbox">🎁 รวมดอกเบี้ยโบนัส</label>
+      <label title="ไม่รวมตัวเลขจากบทความ"><input id="verifiedOnly" type="checkbox">✅ เฉพาะข้อมูลที่ยืนยันกับธนาคารแล้ว</label>
+    </div>
+  </div>
+
+  <!-- สรุป -->
+  <div class="hero" id="hero"></div>
+  <section class="kpis" id="kpis"></section>
+
+  <!-- กราฟ -->
+  <div class="card">
+    <h2>📊 เทียบดอกเบี้ยที่ได้รับ <span class="sm" id="chartSub"></span></h2>
+    <div id="chart"></div>
+  </div>
+
+  <!-- ตาราง -->
+  <div class="card">
+    <div class="head">
+      <h2>🏅 10 อันดับบัญชีดอกเบี้ยสูง</h2>
+      <button id="toggleAll" class="btn no-print"></button>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>อันดับ</th><th>บัญชี</th>
+          <th class="num">ดอกเบี้ยสูงสุด/ปี</th>
+          <th class="num">รับสุทธิ</th>
+          <th class="hide-sm">📅 ธนาคารประกาศ</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- รายปี -->
+  <div class="card" id="yearCard">
+    <h2 id="yearTitle"></h2>
+    <div class="tablewrap">
+      <table class="yr">
+        <thead><tr><th>ช่วง</th><th class="num">เงินต้น</th><th class="num">ดอกเบี้ย</th><th class="num">ภาษี</th><th class="num">เงินรวม</th></tr></thead>
+        <tbody id="ybody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- คำที่ควรรู้ -->
+  <div class="card">
+    <h2>💡 รู้ไว้ก่อนฝาก</h2>
+    <div class="tips">
+      <div class="tip"><b>🪜 ดอกเบี้ยขั้นบันได</b>เงินแต่ละช่วงได้อัตราไม่เท่ากัน ฝากเยอะ อัตราเฉลี่ยอาจลดลง</div>
+      <div class="tip"><b>🌱 ทบต้น</b>ฝากเกิน 1 ปี ดอกเบี้ยจะรวมเป็นเงินต้น ปีต่อไปได้มากขึ้น</div>
+      <div class="tip"><b>🧾 ภาษี 15%</b>ดอกเบี้ยออมทรัพย์รวมทุกบัญชีไม่เกิน 20,000 บาท/ปี ไม่เสียภาษี</div>
+      <div class="tip"><b>🛡️ สคฝ. คุ้มครอง</b>สูงสุด 1 ล้านบาท ต่อคน ต่อธนาคาร</div>
+    </div>
+  </div>
+
+  <!-- วิธีคิดและแหล่งข้อมูล -->
+  <div class="card foot">
+    <details class="more">
+      <summary>📚 วิธีคำนวณ & แหล่งข้อมูล</summary>
+      <ul>
+        <li>คิดดอกเบี้ยขั้นบันไดทีละเดือน</li>
+        <li>ฝาก ≤ 12 เดือน: ไม่ทบต้น · ฝาก &gt; 12 เดือน: ทบต้นทุกครบ 12 เดือน (หลังหักภาษี)</li>
+        <li>ภาษี: หัก 15% ในปีที่ดอกเบี้ยบัญชีนั้นเกิน 20,000 บาท (ถ้ามีบัญชีออมทรัพย์อื่น ต้องรวมเอง และต้องยินยอมส่งข้อมูลให้สรรพากร)</li>
+        <li>Kept (กรุงศรี): คิดตามอายุเงิน ฝากได้สูงสุด 2 ล้านบาท</li>
+      </ul>
+      <ol id="sources"></ol>
+    </details>
+  </div>
+  <p class="note">⚠️ อัตราดอกเบี้ยเปลี่ยนได้ · ป้าย "ควรเช็ก" = ตัวเลขจากบทความ ควรยืนยันกับธนาคารก่อนเปิดบัญชี</p>
+</div>
+
+<script>
+const CHECKED = "10 พ.ย. 2569";
+document.getElementById("checked").textContent = "🔄 อัปเดต " + CHECKED;
+
+// ================= แหล่งข้อมูล =================
+const SRC = {
+  dime:  ["Dime! Save – หน้าผลิตภัณฑ์", "https://dime.co.th/en/save/dime-save"],
+  scb:   ["ไทยพาณิชย์ – ออมทรัพย์อีซี่", "https://www.scb.co.th/th/personal-banking/deposits/savings-account/easy-saving-account"],
+  scbr:  ["ไทยพาณิชย์ – ประกาศอัตราดอกเบี้ย", "https://www.scb.co.th/th/personal-banking/rates-fees"],
+  bay:   ["กรุงศรี – มีแต่ได้ (เปิดออนไลน์)", "https://www.krungsri.com/th/personal/deposit/savings-account/mee-tae-dai/online"],
+  bayr:  ["กรุงศรี – ประกาศอัตราดอกเบี้ยเงินฝาก", "https://www.krungsri.com/th/rates/deposit"],
+  kept:  ["Kept by krungsri – Grow", "https://www.keptbykrungsri.com/grow-savings"],
+  cimb:  ["ซีไอเอ็มบี ไทย – Speed D+", "https://www.cimbthai.com/en/personal/products/accounts/savings-account/speed-d-plus-savings-by-cimb-thai.html"],
+  ttbnf: ["ทีทีบี – โนฟิกซ์", "https://www.ttbbank.com/th/personal/deposits/savings-account/ttb-no-fixed"],
+  ttbr:  ["ทีทีบี – ตารางอัตราดอกเบี้ยเงินฝาก", "https://www.ttbbank.com/th/rates/deposit-interest-rates"],
+  ttbfs: ["ทีทีบี – Fact sheet ttb me save (6 ส.ค. 2569)", "https://media.ttbbank.com/1/document/deposit/th-fact-sheet-ttb-me-save-060826.pdf"],
+  uob:   ["ยูโอบี – เงื่อนไขบัญชี TMRW Savings", "https://www.uob.co.th/personal/ebank/tmrw/deposit-new-term.page"],
+  tisco: ["ทิสโก้ – อัตราดอกเบี้ยเงินฝาก", "https://www.tisco.co.th/en/rates/deposits"],
+  lh:    ["แลนด์ แอนด์ เฮ้าส์ – บียู ริช", "https://www.lhbank.co.th/th/personal/deposits/pro-fit-digital-savings-detail/"],
+  tcr:   ["ไทยเครดิต – ตารางอัตราดอกเบี้ย", "https://www.thaicreditbank.com/"],
+  bbl:   ["กรุงเทพ – อัตราดอกเบี้ยเงินฝาก", "https://www.bangkokbank.com/th-TH/Personal/Other-Services/View-Rates/Deposit-Interest-Rates"],
+  kbank: ["กสิกรไทย – ประกาศ อ 009/2569", "https://www.kasikornbank.com/th/rate/deposits/09052026-deposit-rates-th.pdf"],
+  mb:    ["Money Buffalo – บัญชีเงินฝากดิจิทัล 2569 (17 ก.พ. 2569)", "https://www.moneybuffalo.in.th/saving-tips/digital-bank-fixed-deposit-interest-rate"],
+  tr:    ["ไทยรัฐ – สรุปเงินฝากดิจิทัล (26 มี.ค. 2569)", "https://en.thairath.co.th/money/personal_finance/financial_planning/2922715"],
+  kp:    ["Kapook – เงินฝากดิจิทัลดอกเบี้ยสูง (9 มี.ค. 2569)", "https://money.kapook.com/view299351.html"],
+  pp:    ["Punpro – แอปฝากเงินดิจิทัล (7 ก.พ. 2569)", "https://www.punpro.com/p/7-bank-application-moneysavings-in-Thailand-2026"]
+};
+const SRC_KEYS = Object.keys(SRC);
+
+// ================= ข้อมูลบัญชี =================
+// tiers = ขั้นบันได [ยอดเงินถึง, อัตรา % ต่อปี] · I = ส่วนที่เกิน
+// date = วันที่แสดงในตาราง (สั้น) · announced = รายละเอียดเต็ม
+const I = Infinity;
+const PRODUCTS = [
+  {bank:"เกียรตินาคินภัทร", name:"Dime! Save", verified:true, src:["dime"],
+   tiers:[[1e4,3.00],[3e5,1.00],[I,0.20]], rateText:"10,000 แรก 3.00% · 10,000–300,000 ได้ 1.00% · ส่วนเกิน 0.20%",
+   date:"ไม่ระบุ", announced:"หน้าเว็บไม่ระบุวันที่", note:"จ่ายดอกเบี้ย มิ.ย. และ ธ.ค."},
+  {bank:"เกียรตินาคินภัทร", name:"KKP Savvy", verified:false, src:["mb","pp"],
+   tiers:[[1e4,0.20],[2e5,1.30],[2e6,1.40],[5e6,1.45],[I,0.50]], bonusTiers:[[1e4,0.50],[2e5,1.45],[2e6,1.55],[5e6,1.60],[I,0.65]],
+   rateText:"10,000–200,000 ได้ 1.30% · 200,000–2 ล้าน 1.40% · 2–5 ล้าน 1.45% · ส่วนเกิน 0.50% · รวมโบนัสสูงสุด 1.60%",
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)", note:"โบนัสเมื่อคงเงินครบ 365 วัน"},
+  {bank:"ไทยเครดิต", name:"Alpha", verified:false, src:["tcr","mb","kp"],
+   tiers:[[5e5,1.60],[I,0.40]], rateText:"500,000 แรก 1.60% · ส่วนเกิน 0.40%",
+   date:"30 ต.ค. 69", announced:"มีผล 30 ต.ค. 2569 (ออมทรัพย์ 0.20–1.60%)", note:"เกณฑ์ยอดเงินจากบทความ · เปิดผ่านแอป alpha"},
+  {bank:"อิสลามแห่งประเทศไทย", name:"ibank e-Savings", verified:false, src:["kp","tr"],
+   tiers:[[2e4,2.20],[4e5,1.55],[I,0.50]], rateText:"20,000 แรก 2.20% · 20,000–400,000 ได้ 1.55% · ส่วนเกิน 0.50%",
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ มี.ค. 2569)", note:"ผลตอบแทนคาดหวังตามหลักศาสนาอิสลาม ไม่รับประกัน"},
+  {bank:"ยูโอบี", name:"TMRW Savings", verified:true, src:["uob"],
+   tiers:[[I,1.00]], bonusTiers:[[2e6,1.50],[I,1.00]], rateText:"ปกติ 1.00% · รวมโบนัส 1.50% (2 ล้านแรก)",
+   date:"1 ต.ค. 67", announced:"ประกาศ 15 ส.ค. 2567 · มีผล 1 ต.ค. 2567 (ฉบับล่าสุดที่พบ)", note:"โบนัสเมื่อยอดเฉลี่ยเดือนนี้ ≥ เดือนก่อน"},
+  {bank:"ทิสโก้", name:"TISCO e-Savings", verified:false, src:["tisco","mb"],
+   tiers:[[1e6,1.35],[I,0.50]], rateText:"1 ล้านแรก 1.35% · ส่วนเกิน 0.50%",
+   date:"1 ส.ค. 69", announced:"มีผล 1 ส.ค. 2569 (ช่วงอัตรา 0.50–1.35%)", note:"เกณฑ์ 1 ล้านบาทจากบทความ"},
+  {bank:"ไทยพาณิชย์", name:"ออมทรัพย์อีซี่", verified:true, src:["scb","scbr"],
+   tiers:[[1e6,1.25],[I,0.35]], rateText:"1 ล้านแรก 1.25% · ส่วนเกิน 0.35%",
+   date:"23 พ.ค. 69", announced:"อัตรา ณ 23 พ.ค. 2569 · ประกาศธนาคารล่าสุด 30 ต.ค. 2569", note:"จ่ายดอกเบี้ยทุกเดือน"},
+  {bank:"กรุงศรี", name:"มีแต่ได้ (ออนไลน์)", verified:true, src:["bay","bayr"],
+   tiers:[[1e6,1.25],[2e6,0.90],[50e6,0.50],[I,0.25]], rateText:"1 ล้านแรก 1.25% · 1–2 ล้าน 0.90% · 2–50 ล้าน 0.50% · ส่วนเกิน 0.25%",
+   date:"1 พ.ย. 69", announced:"ประกาศ 30 ต.ค. 2569 · มีผล 1 พ.ย. 2569", note:"จ่ายดอกเบี้ยทุกเดือน"},
+  {bank:"กรุงศรี", name:"Kept Grow", verified:true, src:["kept"], kept:true,
+   rateText:"เดือน 1–18 ได้ 1.25% · เดือน 19–24 ได้ 1.35% · สูงสุด 2 ล้าน",
+   date:"5 มิ.ย. 69", announced:"มีผลกับเงินฝากใหม่ตั้งแต่ 5 มิ.ย. 2569", note:"ขั้นต่ำ 1,000 บาท"},
+  {bank:"กรุงเทพ", name:"บัวหลวง e-Savings", verified:false, src:["mb","tr","bbl"],
+   tiers:[[1e6,1.35],[I,0.35]], rateText:"1 ล้านแรก 1.35% · ส่วนเกิน 0.35%",
+   date:"15 ต.ค. 69", announced:"ประกาศธนาคารล่าสุด มีผล 15 ต.ค. 2569 (ยังยืนยันอัตราบัญชีนี้ไม่ได้)"},
+  {bank:"กสิกรไทย", name:"K-eSavings", verified:false, src:["mb","kp","kbank"],
+   tiers:[[5e5,1.35],[I,0.35]], rateText:"500,000 แรก 1.35% · ส่วนเกิน 0.35%",
+   date:"9 พ.ค. 69", announced:"ประกาศธนาคารล่าสุดที่พบ มีผล 9 พ.ค. 2569"},
+  {bank:"กสิกรไทย", name:"MAKE by KBank", verified:false, src:["mb","pp","kbank"],
+   tiers:[[5e5,1.35],[I,0.35]], rateText:"500,000 แรก 1.35% · ส่วนเกิน 0.35%",
+   date:"9 พ.ค. 69", announced:"ประกาศธนาคารล่าสุดที่พบ มีผล 9 พ.ค. 2569", note:"ใช้คู่กับแอป K PLUS"},
+  {bank:"กรุงไทย", name:"NEXT Savings", verified:false, src:["mb"],
+   tiers:[[5e5,1.25],[1e6,0.80],[I,0.35]], rateText:"500,000 แรก 1.25% · 500,000–1 ล้าน 0.80% · ส่วนเกิน 0.35%",
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)"},
+  {bank:"ซีไอเอ็มบี ไทย", name:"Speed D+", verified:true, src:["cimb"],
+   tiers:[[1e5,0.25],[3e6,1.05],[20e6,1.10],[I,0.50]], bonusTiers:[[1e5,0.45],[3e6,1.25],[20e6,1.30],[I,0.70]],
+   rateText:"ต่ำกว่า 100,000 ได้ 0.25% · 100,000–3 ล้าน 1.05% · 3–20 ล้าน 1.10% · ส่วนเกิน 0.50% · รวมโบนัสสูงสุด 1.40%",
+   date:"1 ต.ค. 69", announced:"มีผล 1 ต.ค. 2569", note:"โบนัสสำหรับลูกค้าใหม่/Preferred ยอด 3 ล้านขึ้นไป 4 เดือน"},
+  {bank:"ซีไอเอ็มบี ไทย", name:"Chill D", verified:false, src:["mb","pp"],
+   tiers:[[1e4,0.50],[5e4,1.00],[1e5,1.50],[I,0.20]], rateText:"10,000 แรก 0.50% · 10,000–50,000 ได้ 1.00% · 50,000–100,000 ได้ 1.50% · ส่วนเกิน 0.20%",
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)"},
+  {bank:"ทีทีบี", name:"ttb me save", verified:true, src:["ttbr","ttbfs"],
+   tiers:[[2e6,1.50],[I,0.25]], rateText:"2 ล้านแรก 1.50% · ส่วนเกิน 0.25%*",
+   date:"1 พ.ย. 69", announced:"มีผล 1 พ.ย. 2569 (สูงสุด 1.50%) · Fact sheet 6 ส.ค. 2569",
+   note:"*ไม่พบอัตราส่วนเกิน 2 ล้าน ใช้อัตราออมทรัพย์ทั่วไป 0.25% · ไม่มีบัตร ATM"},
+  {bank:"ทีทีบี", name:"โนฟิกซ์", verified:true, src:["ttbnf","ttbr"],
+   tiers:[[1e6,0.10],[5e6,1.00],[30e6,1.30],[I,0.50]], bonusTiers:[[1e6,0.45],[5e6,1.35],[30e6,1.65],[I,0.85]],
+   rateText:"1 ล้านแรก 0.10% · 1–5 ล้าน 1.00% · 5–30 ล้าน 1.30% · ส่วนเกิน 0.50%",
+   date:"1 พ.ย. 69", announced:"มีผล 1 พ.ย. 2569", note:"โบนัส +0.35% สำหรับ Reserve Diamond หรือถือกองทุนผ่าน ttb ≥ 5 ล้าน"},
+  {bank:"แลนด์ แอนด์ เฮ้าส์", name:"บียู ริช", verified:true, src:["lh"],
+   tiers:[[2e6,1.25],[I,0.25]], rateText:"2 ล้านแรก 1.25% · ส่วนเกิน 0.25%*",
+   date:"3 ส.ค. 69", announced:"ประกาศ 3 ส.ค. 2569", note:"*ส่วนเกินใช้อัตราออมทรัพย์ทั่วไป 0.25% · จ่ายดอกเบี้ยปีละ 2 ครั้ง"}
+];
+
+// ================= การคำนวณ =================
+function tierInterest(bal, tiers){
+  let r=0, prev=0;
+  for(const [to,rate] of tiers){ if(bal<=prev) break; r+=(Math.min(bal,to)-prev)*rate/100; prev=to; }
+  return r;
+}
+function monthInterest(p, bal, i, bonus){
+  if(p.kept){ return Math.min(bal,2e6)*((i%24)<18?0.0125:0.0135)/12; }
+  return tierInterest(bal, (bonus && p.bonusTiers) ? p.bonusTiers : p.tiers)/12;
+}
+function maxRate(p, bonus){
+  if(p.kept) return 1.35;
+  return Math.max(...((bonus && p.bonusTiers) ? p.bonusTiers : p.tiers).map(t=>t[1]));
+}
+// ≤12 เดือน ไม่ทบต้น · >12 เดือน ทบต้นทุกครบ 12 เดือน (หลังหักภาษี)
+function simulate(p, a, m, bonus){
+  let bal=a, yrInt=0, yrStart=a, yrFrom=1, gross=0, tax=0; const years=[];
+  for(let i=0;i<m;i++){
+    yrInt += monthInterest(p, bal, i, bonus);
+    if((i+1)%12===0 || i===m-1){
+      const t = yrInt>20000 ? yrInt*0.15 : 0;
+      years.push({from:yrFrom, to:i+1, start:yrStart, int:yrInt, tax:t, end:yrStart+yrInt-t});
+      gross+=yrInt; tax+=t; bal=yrStart+yrInt-t; yrStart=bal; yrInt=0; yrFrom=i+2;
+    }
+  }
+  let annual=0; for(let i=0;i<12;i++) annual+=monthInterest(p,a,i,bonus);
+  return {annual, gross, tax, net:gross-tax, final:a+gross-tax, eff:a>0?annual/a*100:0, years, max:maxRate(p,bonus)};
+}
+
+// ================= แสดงผล =================
+const fmt0=n=>Math.round(n).toLocaleString("th-TH");
+const fmt2=n=>n.toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct=n=>n.toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2})+"%";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const MEDAL=["🥇","🥈","🥉"];
+function period(m){ const y=Math.floor(m/12), r=m%12; if(m<12) return `${m} เดือน`; return r?`${y} ปี ${r} เดือน`:`${y} ปี`; }
+function compactBaht(n){ return n>=1e6 ? (n/1e6).toLocaleString("th-TH")+" ล้าน" : fmt0(n); }
+
+const $amount=document.getElementById("amount"), $months=document.getElementById("months"),
+      $bonus=document.getElementById("bonus"), $ver=document.getElementById("verifiedOnly"),
+      $toggle=document.getElementById("toggleAll");
+let showAll=false, selected=null, openInfo=null;
+
+const AMOUNTS=[10000,100000,500000,1000000,2000000,5000000,10000000];
+const MONTHS=[3,6,12,24,36,60];
+document.getElementById("amountChips").innerHTML = AMOUNTS.map(v=>`<button class="chip" data-a="${v}">${compactBaht(v)}</button>`).join("");
+document.getElementById("monthChips").innerHTML = MONTHS.map(v=>`<button class="chip" data-m="${v}">${period(v)}</button>`).join("");
+document.getElementById("amountChips").addEventListener("click",e=>{const b=e.target.closest("[data-a]"); if(!b) return;
+  $amount.value=Number(b.dataset.a).toLocaleString("th-TH"); render();});
+document.getElementById("monthChips").addEventListener("click",e=>{const b=e.target.closest("[data-m]"); if(!b) return;
+  $months.value=b.dataset.m; render();});
+
+const readAmount=()=>Math.max(0,Number(($amount.value||"").replace(/[^\d]/g,""))||0);
+const readMonths=()=>Math.min(360,Math.max(1,Math.round(Number(($months.value||"").replace(/[^\d]/g,""))||1)));
+$amount.addEventListener("input",()=>{
+  const pos=$amount.value.length-$amount.selectionStart, raw=$amount.value.replace(/[^\d]/g,"").slice(0,12);
+  $amount.value = raw ? Number(raw).toLocaleString("th-TH") : "";
+  const np=Math.max(0,$amount.value.length-pos); $amount.setSelectionRange(np,np); render();
+});
+$months.addEventListener("input",()=>{ $months.value=$months.value.replace(/[^\d]/g,"").slice(0,3); render(); });
+[$bonus,$ver].forEach(el=>el.addEventListener("change",render));
+$toggle.addEventListener("click",()=>{showAll=!showAll; render();});
+document.getElementById("tbody").addEventListener("click",e=>{
+  const s=e.target.closest("[data-sel]"), f=e.target.closest("[data-info]");
+  if(s){ selected=s.dataset.sel; render(); document.getElementById("yearCard").scrollIntoView({behavior:"smooth",block:"start"}); }
+  if(f){ openInfo = openInfo===f.dataset.info ? null : f.dataset.info; render(); }
+});
+
+function render(){
+  const a=readAmount(), m=readMonths(), bonus=$bonus.checked, comp=m>12;
+  document.querySelectorAll("#amountChips .chip").forEach(c=>c.classList.toggle("on",Number(c.dataset.a)===a));
+  document.querySelectorAll("#monthChips .chip").forEach(c=>c.classList.toggle("on",Number(c.dataset.m)===m));
+
+  const rows = PRODUCTS.filter(p=>!$ver.checked||p.verified)
+    .map(p=>({p, r:simulate(p,a,m,bonus), id:p.bank+"|"+p.name}))
+    .sort((x,y)=>y.r.net-x.r.net || y.r.max-x.r.max);
+  const top=rows.slice(0,10), list=showAll?rows:top;
+  $toggle.textContent = showAll ? "ย่อเหลือ 10 อันดับ" : `ดูทั้งหมด ${rows.length} บัญชี`;
+
+  if(!top.length || a<=0){
+    document.getElementById("hero").innerHTML='<div class="bank">✍️ กรอกยอดเงินฝากก่อนนะ</div>';
+    ["kpis","tbody","chart","ybody"].forEach(id=>document.getElementById(id).innerHTML=""); return;
+  }
+  const b=top[0];
+
+  // ---- สรุป ----
+  document.getElementById("hero").innerHTML = `
+    <span class="sticker">🏆 คุ้มที่สุด!</span>
+    <div class="who">ฝาก ${fmt0(a)} บาท · ${period(m)} ${comp?'· ทบต้น 🌱':''}</div>
+    <div class="bank">${esc(b.p.bank)} <small>${esc(b.p.name)}</small>
+      ${b.p.verified?'':' <span class="tag warn">⚠️ ควรเช็ก</span>'}</div>
+    <div class="row">
+      <div><div class="cap">ดอกเบี้ยที่ได้ (หลังภาษี)</div><div class="big">+${fmt2(b.r.net)} ฿</div></div>
+      <div><div class="cap">รับเงินรวม</div><div class="mid">${fmt2(b.r.final)} ฿</div></div>
+    </div>`;
+
+  document.getElementById("kpis").innerHTML = `
+    <div class="kpi"><div class="ic g">📈</div><div class="k">ดอกเบี้ยต่อปี</div>
+      <div class="v">${fmt2(b.r.annual)} ฿</div><div class="d">เฉลี่ย ${pct(b.r.eff)}</div></div>
+    <div class="kpi"><div class="ic b">💰</div><div class="k">ดอกเบี้ยรวม ${period(m)}</div>
+      <div class="v">${fmt2(b.r.gross)} ฿</div><div class="d">ก่อนหักภาษี</div></div>
+    <div class="kpi"><div class="ic t">🧾</div><div class="k">ภาษี 15%</div>
+      <div class="v ${b.r.tax?'tax':''}">${fmt2(b.r.tax)} ฿</div><div class="d">${b.r.tax?'ดอกเบี้ยเกิน 20,000/ปี':'ไม่เสียภาษี 🎉'}</div></div>
+    <div class="kpi"><div class="ic s">🎉</div><div class="k">รับสุทธิ</div>
+      <div class="v green">${fmt2(b.r.net)} ฿</div><div class="d">หลังหักภาษีแล้ว</div></div>`;
+
+  // ---- ตาราง ----
+  if(!selected || !rows.find(x=>x.id===selected)) selected=b.id;
+  document.getElementById("tbody").innerHTML = list.map((x,i)=>{
+    const {p,r}=x, open=openInfo===x.id;
+    const srcs=p.src.map(k=>`<a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a>`).join(" · ");
+    return `<tr class="${i===0?'first':''} ${x.id===selected&&i!==0?'sel':''}">
+      <td>${i<3?`<span class="rank">${MEDAL[i]}</span>`:`<span class="rank n">${i+1}</span>`}</td>
+      <td><div class="bname">${esc(p.bank)}</div><div class="pname">${esc(p.name)}
+        <span class="tag ${p.verified?'ok':'warn'}">${p.verified?'✓ ยืนยันแล้ว':'⚠️ ควรเช็ก'}</span></div>
+        <div class="acts no-print"><button class="mini" data-info="${esc(x.id)}">${open?'ซ่อน':'ℹ️ เงื่อนไข'}</button>
+        <button class="mini" data-sel="${esc(x.id)}">🌱 รายปี</button></div></td>
+      <td class="num">${pct(r.max)}</td>
+      <td class="num"><span class="money">${fmt2(r.net)}</span>${r.tax?`<div class="sm">หักภาษี ${fmt2(r.tax)}</div>`:''}</td>
+      <td class="hide-sm">${esc(p.date)}</td></tr>
+      ${open?`<tr class="info"><td></td><td colspan="4">
+        📌 ${esc(p.rateText)}<br>
+        ${p.note?`<span class="warnline">${esc(p.note)}</span><br>`:''}
+        📅 ${esc(p.announced)}<br>
+        🔗 ${srcs}</td></tr>`:''}`;
+  }).join("");
+
+  drawChart(top, m);
+  renderYears(rows.find(x=>x.id===selected), a, m);
+}
+
+function renderYears(x, a, m){
+  document.getElementById("yearTitle").innerHTML = `🌱 เงินงอกเงยรายปี <span class="sm">· ${esc(x.p.bank)} ${esc(x.p.name)}</span>`;
+  document.getElementById("ybody").innerHTML = x.r.years.map((y,i)=>`<tr>
+      <td>${m>12?`ปีที่ ${i+1}`:period(m)} <span class="sm">(เดือน ${y.from}–${y.to})</span></td>
+      <td class="num">${fmt2(y.start)}</td><td class="num" style="color:var(--green)">+${fmt2(y.int)}</td>
+      <td class="num sm">${y.tax?'-'+fmt2(y.tax):'-'}</td><td class="num"><b>${fmt2(y.end)}</b></td></tr>`).join("")
+    + (x.r.years.length>1?`<tr class="total"><td>รวม</td><td class="num">${fmt2(a)}</td><td class="num" style="color:var(--green)">+${fmt2(x.r.gross)}</td>
+       <td class="num">${x.r.tax?'-'+fmt2(x.r.tax):'-'}</td><td class="num">${fmt2(x.r.final)}</td></tr>`:'');
+}
+
+// ---- กราฟแท่งแนวตั้ง ----
+function niceMax(v){ const p=Math.pow(10,Math.floor(Math.log10(v))), f=v/p;
+  return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p; }
+function drawChart(top, m){
+  document.getElementById("chartSub").textContent = `· หลังหักภาษี · ฝาก ${period(m)} (บาท)`;
+  const W=960, H=430, L=64, R=12, T=48, B=70, cw=W-L-R, ch=H-T-B;
+  const max=niceMax(Math.max(1,...top.map(x=>x.r.net)));
+  const slot=cw/top.length, bw=Math.min(60, slot*0.6);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="กราฟแท่งเปรียบเทียบดอกเบี้ยสุทธิ">
+    <defs><linearGradient id="gTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sun)"/><stop offset="1" style="stop-color:var(--bar-top)"/></linearGradient></defs>`;
+  for(let g=0; g<=4; g++){
+    const y=T+ch-ch*g/4;
+    s+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="var(--line)" ${g?'stroke-dasharray="3 6"':''}/>`;
+    s+=`<text x="${L-8}" y="${y+4}" text-anchor="end" font-size="12" style="fill:var(--muted)">${fmt0(max*g/4)}</text>`;
+  }
+  top.forEach((x,i)=>{
+    const cx=L+slot*i+slot/2, h=Math.max(3,ch*x.r.net/max), y=T+ch-h;
+    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="8" fill="${i===0?'url(#gTop)':'var(--bar)'}"><title>${esc(x.p.bank+' '+x.p.name)}: ${fmt2(x.r.net)} บาท</title></rect>`;
+    s+=`<text x="${cx}" y="${y-8}" text-anchor="middle" font-size="13" font-weight="700">${fmt0(x.r.net)}</text>`;
+    if(i<3) s+=`<text x="${cx}" y="${y-28}" text-anchor="middle" font-size="20">${MEDAL[i]}</text>`;
+    const SHORT={"เกียรตินาคินภัทร":"เกียรตินาคิน","แลนด์ แอนด์ เฮ้าส์":"LH Bank","อิสลามแห่งประเทศไทย":"ไอแบงก์","ซีไอเอ็มบี ไทย":"ซีไอเอ็มบี"};
+    const bn=SHORT[x.p.bank]||x.p.bank;
+    const pn=x.p.name.length>12?x.p.name.slice(0,11)+"…":x.p.name;
+    s+=`<text x="${cx}" y="${T+ch+22}" text-anchor="middle" font-size="13" font-weight="700">${esc(bn)}</text>`;
+    s+=`<text x="${cx}" y="${T+ch+40}" text-anchor="middle" font-size="12" style="fill:var(--muted)">${esc(pn)}</text>`;
+  });
+  document.getElementById("chart").innerHTML = s+`</svg>`;
+}
+
+document.getElementById("sources").innerHTML = SRC_KEYS.map(k=>
+  `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")
+  + `<li>รวบรวมและคำนวณเมื่อ ${CHECKED}</li>`;
+
+render();
+</script>
+</body>
+</html>
