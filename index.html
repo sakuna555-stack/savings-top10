@@ -10,7 +10,7 @@
   --green:#14a254; --green-ink:#ffffff; --green-soft:#e5f7ec;
   --sun:#ffb423; --sun-soft:#fff5d9; --sky:#2f8fde; --sky-soft:#e6f2fc;
   --tax:#e06a3a; --warn:#b26a00; --warn-soft:#fff1d6;
-  --bar:#9fdcb7; --bar-top:#14a254;
+  --bar:#9fdcb7; --bar-top:#14a254; --brand:#c2185b;
   --hero:linear-gradient(135deg,#e3f8eb 0%,#fff6dc 100%);
   --shadow:0 4px 18px rgba(20,90,50,.07);
   --page:
@@ -26,7 +26,7 @@
     --green:#3fd07f; --green-ink:#08160e; --green-soft:#16301f;
     --sun:#ffc44d; --sun-soft:#33290f; --sky:#62b2f0; --sky-soft:#142a3b;
     --tax:#f3926a; --warn:#f5c066; --warn-soft:#352a12;
-    --bar:#2c7a4d; --bar-top:#3fd07f;
+    --bar:#2c7a4d; --bar-top:#3fd07f; --brand:#ff7aac;
     --hero:linear-gradient(135deg,#163222 0%,#2e2810 100%); --shadow:none;
     --page:
       radial-gradient(ellipse 60% 45% at 0% 0%, #123524 0%, transparent 70%),
@@ -40,7 +40,7 @@
   --green:#3fd07f; --green-ink:#08160e; --green-soft:#16301f;
   --sun:#ffc44d; --sun-soft:#33290f; --sky:#62b2f0; --sky-soft:#142a3b;
   --tax:#f3926a; --warn:#f5c066; --warn-soft:#352a12;
-  --bar:#2c7a4d; --bar-top:#3fd07f;
+  --bar:#2c7a4d; --bar-top:#3fd07f; --brand:#ff7aac;
   --hero:linear-gradient(135deg,#163222 0%,#2e2810 100%); --shadow:none;
   --page:
     radial-gradient(ellipse 60% 45% at 0% 0%, #123524 0%, transparent 70%),
@@ -51,20 +51,28 @@
 *{box-sizing:border-box}
 html{background:var(--bg)}
 body{margin:0;min-height:100vh;background:var(--page);background-color:var(--bg);background-attachment:fixed;color:var(--ink);
-  font-family:"Sarabun","Leelawadee UI","Noto Sans Thai","Tahoma",system-ui,sans-serif;font-size:17px;line-height:1.6}
-.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
+  font-family:"Sarabun","Leelawadee UI","Noto Sans Thai","Segoe UI","Tahoma",system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 56px}
+.topbar{display:flex;justify-content:flex-end;margin-bottom:6px}
+.lang{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:var(--shadow)}
+.lang button{font-family:inherit;font-size:.88rem;font-weight:700;border:0;background:transparent;color:var(--muted);
+  padding:5px 14px;border-radius:999px;cursor:pointer}
+.lang button.on{background:var(--green);color:var(--green-ink)}
 header{text-align:center;margin-bottom:22px}
 header .logo{font-size:2.6rem;line-height:1}
 h1{font-size:1.9rem;margin:6px 0 4px}
 h2{font-size:1.25rem;margin:0 0 14px}
 .sub{color:var(--muted);margin:0}
+.badges{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
 .pill{display:inline-block;background:var(--green-soft);color:var(--green);font-weight:700;font-size:.85rem;
-  padding:3px 12px;border-radius:999px;margin-top:8px}
+  padding:3px 12px;border-radius:999px}
+.byline{display:inline-block;background:var(--card);color:var(--brand);font-weight:800;font-size:1.05rem;
+  padding:6px 20px;border-radius:999px;box-shadow:0 3px 14px rgba(194,24,91,.14);letter-spacing:.2px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px;box-shadow:var(--shadow)}
 .inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .lbl{display:block;font-weight:700;margin-bottom:8px}
 .field{position:relative}
-.field input{width:100%;padding:13px 62px 13px 16px;font-size:1.5rem;font-weight:700;border:2px solid var(--line);
+.field input{width:100%;padding:13px 82px 13px 16px;font-size:1.5rem;font-weight:700;border:2px solid var(--line);
   border-radius:14px;background:var(--bg);color:var(--ink);font-family:inherit;font-variant-numeric:tabular-nums}
 .field input:focus{outline:none;border-color:var(--green);background:var(--card)}
 .field .unit{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
@@ -76,7 +84,6 @@ h2{font-size:1.25rem;margin:0 0 14px}
 .opts{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:.95rem}
 .opts label{display:flex;gap:8px;align-items:center;cursor:pointer}
 .opts input{width:18px;height:18px;accent-color:var(--green)}
-/* hero */
 .hero{position:relative;background:var(--hero);border-radius:22px;padding:26px 24px;margin-bottom:16px;border:1px solid var(--line);box-shadow:var(--shadow)}
 .sticker{position:absolute;top:-14px;right:18px;background:var(--sun);color:#3a2600;font-weight:800;font-size:.95rem;
   padding:6px 14px;border-radius:999px;transform:rotate(4deg);box-shadow:0 3px 10px rgba(0,0,0,.12)}
@@ -99,7 +106,6 @@ h2{font-size:1.25rem;margin:0 0 14px}
 .tag{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 9px;border-radius:999px;white-space:nowrap}
 .tag.ok{background:var(--green-soft);color:var(--green)}
 .tag.warn{background:var(--warn-soft);color:var(--warn)}
-/* table */
 .head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px}
 .head h2{margin:0}
 .btn{font-family:inherit;font-size:.9rem;padding:7px 14px;border-radius:999px;border:1px solid var(--line);
@@ -125,14 +131,11 @@ tr.sel td{background:var(--green-soft)}
 tr.info td{background:var(--bg);font-size:.88rem;line-height:1.65;padding:12px 16px}
 tr.info a{color:var(--sky)}
 .warnline{color:var(--warn)}
-/* chart */
 #chart{overflow-x:auto}
 #chart svg{width:100%;min-width:700px;height:auto;display:block}
 #chart text{font-family:inherit;fill:var(--ink)}
-/* year */
 .yr td,.yr th{padding:9px 10px}
 .yr tr.total td{font-weight:800;border-bottom:none}
-/* tips */
 .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .tip{background:var(--bg);border-radius:14px;padding:12px 14px;font-size:.92rem}
 .tip b{display:block;margin-bottom:2px}
@@ -144,6 +147,7 @@ details.more[open] summary::after{content:" ▴"}
 .foot ul,.foot ol{padding-left:20px;margin:8px 0}
 .foot a{color:var(--sky)}
 .note{text-align:center;font-size:.85rem;color:var(--muted);margin-top:8px}
+.credit{text-align:center;margin-top:18px}
 @media (max-width:640px){
   body{font-size:16px} h1{font-size:1.55rem} .card{padding:16px} .hero .big{font-size:1.9rem}
   .hide-sm{display:none}
@@ -153,192 +157,283 @@ details.more[open] summary::after{content:" ▴"}
 </head>
 <body>
 <div class="wrap">
+  <div class="topbar no-print">
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="th">ไทย</button><button data-lang="en">EN</button>
+    </div>
+  </div>
+
   <header>
     <div class="logo">🐷💰</div>
-    <h1>ฝากเงินที่ไหนดี?</h1>
-    <p class="sub">เทียบดอกเบี้ยบัญชีออมทรัพย์ · ถอนได้ทุกเมื่อ</p>
-    <span class="pill" id="checked"></span>
+    <h1 data-i="title"></h1>
+    <p class="sub" data-i="sub"></p>
+    <div class="badges">
+      <span class="pill" id="checked"></span>
+      <span class="byline">by Nok SAKUNA</span>
+    </div>
   </header>
 
-  <!-- กรอกข้อมูล -->
   <div class="card">
     <div class="inputs">
       <div>
-        <label class="lbl" for="amount">💵 ฝากเท่าไร</label>
-        <div class="field"><input id="amount" type="text" inputmode="numeric" value="1,000,000" autocomplete="off"><span class="unit">บาท</span></div>
+        <label class="lbl" for="amount" data-i="amountLbl"></label>
+        <div class="field"><input id="amount" type="text" inputmode="numeric" value="1,000,000" autocomplete="off"><span class="unit" data-i="baht"></span></div>
         <div class="chips" id="amountChips"></div>
       </div>
       <div>
-        <label class="lbl" for="months">📅 ฝากนานเท่าไร</label>
-        <div class="field"><input id="months" type="text" inputmode="numeric" value="12" autocomplete="off"><span class="unit">เดือน</span></div>
+        <label class="lbl" for="months" data-i="monthsLbl"></label>
+        <div class="field"><input id="months" type="text" inputmode="numeric" value="12" autocomplete="off"><span class="unit" data-i="monthUnit"></span></div>
         <div class="chips" id="monthChips"></div>
       </div>
     </div>
     <div class="opts">
-      <label title="ได้เพิ่มเมื่อทำตามเงื่อนไขธนาคาร"><input id="bonus" type="checkbox">🎁 รวมดอกเบี้ยโบนัส</label>
-      <label title="ไม่รวมตัวเลขจากบทความ"><input id="verifiedOnly" type="checkbox">✅ เฉพาะข้อมูลที่ยืนยันกับธนาคารแล้ว</label>
+      <label><input id="bonus" type="checkbox"><span data-i="bonusLbl"></span></label>
+      <label><input id="verifiedOnly" type="checkbox"><span data-i="verLbl"></span></label>
     </div>
   </div>
 
-  <!-- สรุป -->
   <div class="hero" id="hero"></div>
   <section class="kpis" id="kpis"></section>
 
-  <!-- กราฟ -->
   <div class="card">
-    <h2>📊 เทียบดอกเบี้ยที่ได้รับ <span class="sm" id="chartSub"></span></h2>
+    <h2><span data-i="chartTitle"></span> <span class="sm" id="chartSub"></span></h2>
     <div id="chart"></div>
   </div>
 
-  <!-- ตาราง -->
   <div class="card">
     <div class="head">
-      <h2>🏅 10 อันดับบัญชีดอกเบี้ยสูง</h2>
+      <h2 data-i="tableTitle"></h2>
       <button id="toggleAll" class="btn no-print"></button>
     </div>
     <div class="tablewrap">
       <table>
         <thead><tr>
-          <th>อันดับ</th><th>บัญชี</th>
-          <th class="num">ดอกเบี้ยสูงสุด/ปี</th>
-          <th class="num">รับสุทธิ</th>
-          <th class="hide-sm">📅 ธนาคารประกาศ</th>
+          <th data-i="thRank"></th><th data-i="thAcct"></th>
+          <th class="num" data-i="thMax"></th>
+          <th class="num" data-i="thNet"></th>
+          <th class="hide-sm" data-i="thDate"></th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- รายปี -->
   <div class="card" id="yearCard">
     <h2 id="yearTitle"></h2>
     <div class="tablewrap">
       <table class="yr">
-        <thead><tr><th>ช่วง</th><th class="num">เงินต้น</th><th class="num">ดอกเบี้ย</th><th class="num">ภาษี</th><th class="num">เงินรวม</th></tr></thead>
+        <thead><tr><th data-i="yPeriod"></th><th class="num" data-i="yStart"></th><th class="num" data-i="yInt"></th><th class="num" data-i="yTax"></th><th class="num" data-i="yEnd"></th></tr></thead>
         <tbody id="ybody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- คำที่ควรรู้ -->
   <div class="card">
-    <h2>💡 รู้ไว้ก่อนฝาก</h2>
+    <h2 data-i="tipsTitle"></h2>
     <div class="tips">
-      <div class="tip"><b>🪜 ดอกเบี้ยขั้นบันได</b>เงินแต่ละช่วงได้อัตราไม่เท่ากัน ฝากเยอะ อัตราเฉลี่ยอาจลดลง</div>
-      <div class="tip"><b>🌱 ทบต้น</b>ฝากเกิน 1 ปี ดอกเบี้ยจะรวมเป็นเงินต้น ปีต่อไปได้มากขึ้น</div>
-      <div class="tip"><b>🧾 ภาษี 15%</b>ดอกเบี้ยออมทรัพย์รวมทุกบัญชีไม่เกิน 20,000 บาท/ปี ไม่เสียภาษี</div>
-      <div class="tip"><b>🛡️ สคฝ. คุ้มครอง</b>สูงสุด 1 ล้านบาท ต่อคน ต่อธนาคาร</div>
+      <div class="tip" data-i="tip1"></div>
+      <div class="tip" data-i="tip2"></div>
+      <div class="tip" data-i="tip3"></div>
+      <div class="tip" data-i="tip4"></div>
     </div>
   </div>
 
-  <!-- วิธีคิดและแหล่งข้อมูล -->
   <div class="card foot">
     <details class="more">
-      <summary>📚 วิธีคำนวณ & แหล่งข้อมูล</summary>
-      <ul>
-        <li>คิดดอกเบี้ยขั้นบันไดทีละเดือน</li>
-        <li>ฝาก ≤ 12 เดือน: ไม่ทบต้น · ฝาก &gt; 12 เดือน: ทบต้นทุกครบ 12 เดือน (หลังหักภาษี)</li>
-        <li>ภาษี: หัก 15% ในปีที่ดอกเบี้ยบัญชีนั้นเกิน 20,000 บาท (ถ้ามีบัญชีออมทรัพย์อื่น ต้องรวมเอง และต้องยินยอมส่งข้อมูลให้สรรพากร)</li>
-        <li>Kept (กรุงศรี): คิดตามอายุเงิน ฝากได้สูงสุด 2 ล้านบาท</li>
-      </ul>
+      <summary data-i="moreTitle"></summary>
+      <ul data-i="method"></ul>
       <ol id="sources"></ol>
     </details>
   </div>
-  <p class="note">⚠️ อัตราดอกเบี้ยเปลี่ยนได้ · ป้าย "ควรเช็ก" = ตัวเลขจากบทความ ควรยืนยันกับธนาคารก่อนเปิดบัญชี</p>
+  <p class="note" data-i="note"></p>
+  <div class="credit"><span class="byline">by Nok SAKUNA</span></div>
 </div>
 
 <script>
-const CHECKED = "10 พ.ย. 2569";
-document.getElementById("checked").textContent = "🔄 อัปเดต " + CHECKED;
+// ================= ข้อความ 2 ภาษา =================
+const T = {
+  th:{
+    docTitle:"ฝากเงินที่ไหนดี", title:"ฝากเงินที่ไหนดี?", sub:"เทียบดอกเบี้ยบัญชีออมทรัพย์ · ถอนได้ทุกเมื่อ",
+    checked:"🔄 อัปเดต 10 พ.ย. 2569",
+    amountLbl:"💵 ฝากเท่าไร", monthsLbl:"📅 ฝากนานเท่าไร", baht:"บาท", monthUnit:"เดือน",
+    bonusLbl:"🎁 รวมดอกเบี้ยโบนัส", verLbl:"✅ เฉพาะข้อมูลที่ยืนยันกับธนาคารแล้ว",
+    chartTitle:"📊 เทียบดอกเบี้ยที่ได้รับ", tableTitle:"🏅 10 อันดับบัญชีดอกเบี้ยสูง",
+    thRank:"อันดับ", thAcct:"บัญชี", thMax:"ดอกเบี้ยสูงสุด/ปี", thNet:"รับสุทธิ", thDate:"📅 ธนาคารประกาศ",
+    yPeriod:"ช่วง", yStart:"เงินต้น", yInt:"ดอกเบี้ย", yTax:"ภาษี", yEnd:"เงินรวม",
+    tipsTitle:"💡 รู้ไว้ก่อนฝาก",
+    tip1:"<b>🪜 ดอกเบี้ยขั้นบันได</b>เงินแต่ละช่วงได้อัตราไม่เท่ากัน ฝากเยอะ อัตราเฉลี่ยอาจลดลง",
+    tip2:"<b>🌱 ทบต้น</b>ฝากเกิน 1 ปี ดอกเบี้ยจะรวมเป็นเงินต้น ปีต่อไปได้มากขึ้น",
+    tip3:"<b>🧾 ภาษี 15%</b>ดอกเบี้ยออมทรัพย์รวมทุกบัญชีไม่เกิน 20,000 บาท/ปี ไม่เสียภาษี",
+    tip4:"<b>🛡️ สคฝ. คุ้มครอง</b>สูงสุด 1 ล้านบาท ต่อคน ต่อธนาคาร",
+    moreTitle:"📚 วิธีคำนวณ & แหล่งข้อมูล",
+    method:"<li>คิดดอกเบี้ยขั้นบันไดทีละเดือน</li><li>ฝาก ≤ 12 เดือน: ไม่ทบต้น · ฝาก &gt; 12 เดือน: ทบต้นทุกครบ 12 เดือน (หลังหักภาษี)</li><li>ภาษี: หัก 15% ในปีที่ดอกเบี้ยบัญชีนั้นเกิน 20,000 บาท (ถ้ามีบัญชีออมทรัพย์อื่น ต้องรวมเอง และต้องยินยอมส่งข้อมูลให้สรรพากร)</li><li>Kept (กรุงศรี): คิดตามอายุเงิน ฝากได้สูงสุด 2 ล้านบาท</li>",
+    note:"⚠️ อัตราดอกเบี้ยเปลี่ยนได้ · ป้าย \"ควรเช็ก\" = ตัวเลขจากบทความ ควรยืนยันกับธนาคารก่อนเปิดบัญชี",
+    compiled:"รวบรวมและคำนวณเมื่อ 10 พ.ย. 2569",
+    m:n=>`${n} เดือน`, y:n=>`${n} ปี`, ym:(y,m)=>`${y} ปี ${m} เดือน`, million:n=>`${n} ล้าน`,
+    best:"🏆 คุ้มที่สุด!", deposit:(a,p)=>`ฝาก ${a} บาท · ${p}`, comp:"· ทบต้น 🌱", check:"⚠️ ควรเช็ก", verified:"✓ ยืนยันแล้ว",
+    earned:"ดอกเบี้ยที่ได้ (หลังภาษี)", payout:"รับเงินรวม",
+    kYear:"ดอกเบี้ยต่อปี", kAvg:r=>`เฉลี่ย ${r}`, kTotal:p=>`ดอกเบี้ยรวม ${p}`, beforeTax:"ก่อนหักภาษี",
+    kTax:"ภาษี 15%", taxed:"ดอกเบี้ยเกิน 20,000/ปี", taxFree:"ไม่เสียภาษี 🎉", kNet:"รับสุทธิ", afterTax:"หลังหักภาษีแล้ว",
+    showAll:n=>`ดูทั้งหมด ${n} บัญชี`, top10:"ย่อเหลือ 10 อันดับ",
+    details:"ℹ️ เงื่อนไข", hide:"ซ่อน", byYear:"🌱 รายปี", taxLine:v=>`หักภาษี ${v}`,
+    empty:"✍️ กรอกยอดเงินฝากก่อนนะ",
+    yearTitle:"🌱 เงินงอกเงยรายปี", yearN:n=>`ปีที่ ${n}`, monthsRange:(a,b)=>`(เดือน ${a}–${b})`, total:"รวม",
+    chartSub:p=>`· หลังหักภาษี · ฝาก ${p} (บาท)`, chartAria:"กราฟแท่งเปรียบเทียบดอกเบี้ยสุทธิ", thb:"บาท"
+  },
+  en:{
+    docTitle:"Where to Save", title:"Where to Save?", sub:"Compare high-interest savings accounts · withdraw anytime",
+    checked:"🔄 Updated 10 Nov 2026",
+    amountLbl:"💵 Deposit amount", monthsLbl:"📅 Deposit period", baht:"THB", monthUnit:"months",
+    bonusLbl:"🎁 Include bonus interest", verLbl:"✅ Bank-verified only",
+    chartTitle:"📊 Interest comparison", tableTitle:"🏅 Top 10 high-interest accounts",
+    thRank:"Rank", thAcct:"Account", thMax:"Max rate p.a.", thNet:"Net interest", thDate:"📅 Bank notice",
+    yPeriod:"Period", yStart:"Principal", yInt:"Interest", yTax:"Tax", yEnd:"Balance",
+    tipsTitle:"💡 Good to know",
+    tip1:"<b>🪜 Tiered rates</b>Each balance band earns a different rate. Bigger deposits may get a lower average rate.",
+    tip2:"<b>🌱 Compounding</b>Over 1 year, interest is added to the principal, so the next year earns more.",
+    tip3:"<b>🧾 15% tax</b>Savings interest across all accounts up to 20,000 THB/year is tax-free.",
+    tip4:"<b>🛡️ Deposit protection</b>DPA covers up to 1 million THB per person per bank.",
+    moreTitle:"📚 Method & sources",
+    method:"<li>Tiered interest is calculated month by month</li><li>≤ 12 months: simple interest · &gt; 12 months: compounded every 12 months (after tax)</li><li>Tax: 15% is withheld in any year the account earns over 20,000 THB (add interest from other savings accounts yourself; the exemption also requires consenting to share data with the Revenue Department)</li><li>Kept (Krungsri): rate depends on how long each deposit has been held; max 2 million THB</li>",
+    note:"⚠️ Rates can change · \"Check\" = figures from articles; confirm with the bank before opening an account",
+    compiled:"Compiled and calculated on 10 Nov 2026",
+    m:n=>`${n} month${n>1?"s":""}`, y:n=>`${n} year${n>1?"s":""}`, ym:(y,m)=>`${y} yr ${m} mo`, million:n=>`${n}M`,
+    best:"🏆 Best pick!", deposit:(a,p)=>`Deposit ${a} THB · ${p}`, comp:"· compounding 🌱", check:"⚠️ Check", verified:"✓ Verified",
+    earned:"Interest earned (after tax)", payout:"Total payout",
+    kYear:"Interest per year", kAvg:r=>`avg ${r}`, kTotal:p=>`Total interest · ${p}`, beforeTax:"before tax",
+    kTax:"Tax 15%", taxed:"interest over 20,000/yr", taxFree:"tax-free 🎉", kNet:"Net interest", afterTax:"after tax",
+    showAll:n=>`Show all ${n} accounts`, top10:"Top 10 only",
+    details:"ℹ️ Details", hide:"Hide", byYear:"🌱 By year", taxLine:v=>`tax ${v}`,
+    empty:"✍️ Enter a deposit amount",
+    yearTitle:"🌱 Growth by year", yearN:n=>`Year ${n}`, monthsRange:(a,b)=>`(months ${a}–${b})`, total:"Total",
+    chartSub:p=>`· after tax · ${p} (THB)`, chartAria:"Bar chart comparing net interest", thb:"THB"
+  }
+};
 
-// ================= แหล่งข้อมูล =================
+// ================= แหล่งข้อมูล [ไทย, English, URL] =================
 const SRC = {
-  dime:  ["Dime! Save – หน้าผลิตภัณฑ์", "https://dime.co.th/en/save/dime-save"],
-  scb:   ["ไทยพาณิชย์ – ออมทรัพย์อีซี่", "https://www.scb.co.th/th/personal-banking/deposits/savings-account/easy-saving-account"],
-  scbr:  ["ไทยพาณิชย์ – ประกาศอัตราดอกเบี้ย", "https://www.scb.co.th/th/personal-banking/rates-fees"],
-  bay:   ["กรุงศรี – มีแต่ได้ (เปิดออนไลน์)", "https://www.krungsri.com/th/personal/deposit/savings-account/mee-tae-dai/online"],
-  bayr:  ["กรุงศรี – ประกาศอัตราดอกเบี้ยเงินฝาก", "https://www.krungsri.com/th/rates/deposit"],
-  kept:  ["Kept by krungsri – Grow", "https://www.keptbykrungsri.com/grow-savings"],
-  cimb:  ["ซีไอเอ็มบี ไทย – Speed D+", "https://www.cimbthai.com/en/personal/products/accounts/savings-account/speed-d-plus-savings-by-cimb-thai.html"],
-  ttbnf: ["ทีทีบี – โนฟิกซ์", "https://www.ttbbank.com/th/personal/deposits/savings-account/ttb-no-fixed"],
-  ttbr:  ["ทีทีบี – ตารางอัตราดอกเบี้ยเงินฝาก", "https://www.ttbbank.com/th/rates/deposit-interest-rates"],
-  ttbfs: ["ทีทีบี – Fact sheet ttb me save (6 ส.ค. 2569)", "https://media.ttbbank.com/1/document/deposit/th-fact-sheet-ttb-me-save-060826.pdf"],
-  uob:   ["ยูโอบี – เงื่อนไขบัญชี TMRW Savings", "https://www.uob.co.th/personal/ebank/tmrw/deposit-new-term.page"],
-  tisco: ["ทิสโก้ – อัตราดอกเบี้ยเงินฝาก", "https://www.tisco.co.th/en/rates/deposits"],
-  lh:    ["แลนด์ แอนด์ เฮ้าส์ – บียู ริช", "https://www.lhbank.co.th/th/personal/deposits/pro-fit-digital-savings-detail/"],
-  tcr:   ["ไทยเครดิต – ตารางอัตราดอกเบี้ย", "https://www.thaicreditbank.com/"],
-  bbl:   ["กรุงเทพ – อัตราดอกเบี้ยเงินฝาก", "https://www.bangkokbank.com/th-TH/Personal/Other-Services/View-Rates/Deposit-Interest-Rates"],
-  kbank: ["กสิกรไทย – ประกาศ อ 009/2569", "https://www.kasikornbank.com/th/rate/deposits/09052026-deposit-rates-th.pdf"],
-  mb:    ["Money Buffalo – บัญชีเงินฝากดิจิทัล 2569 (17 ก.พ. 2569)", "https://www.moneybuffalo.in.th/saving-tips/digital-bank-fixed-deposit-interest-rate"],
-  tr:    ["ไทยรัฐ – สรุปเงินฝากดิจิทัล (26 มี.ค. 2569)", "https://en.thairath.co.th/money/personal_finance/financial_planning/2922715"],
-  kp:    ["Kapook – เงินฝากดิจิทัลดอกเบี้ยสูง (9 มี.ค. 2569)", "https://money.kapook.com/view299351.html"],
-  pp:    ["Punpro – แอปฝากเงินดิจิทัล (7 ก.พ. 2569)", "https://www.punpro.com/p/7-bank-application-moneysavings-in-Thailand-2026"]
+  dime:  ["Dime! Save – หน้าผลิตภัณฑ์","Dime! Save – product page","https://dime.co.th/en/save/dime-save"],
+  scb:   ["ไทยพาณิชย์ – ออมทรัพย์อีซี่","SCB – EASY Savings","https://www.scb.co.th/th/personal-banking/deposits/savings-account/easy-saving-account"],
+  scbr:  ["ไทยพาณิชย์ – ประกาศอัตราดอกเบี้ย","SCB – rate announcements","https://www.scb.co.th/th/personal-banking/rates-fees"],
+  bay:   ["กรุงศรี – มีแต่ได้ (เปิดออนไลน์)","Krungsri – Mee Tae Dai (online)","https://www.krungsri.com/th/personal/deposit/savings-account/mee-tae-dai/online"],
+  bayr:  ["กรุงศรี – ประกาศอัตราดอกเบี้ยเงินฝาก","Krungsri – deposit rate announcements","https://www.krungsri.com/th/rates/deposit"],
+  kept:  ["Kept by krungsri – Grow","Kept by krungsri – Grow","https://www.keptbykrungsri.com/grow-savings"],
+  cimb:  ["ซีไอเอ็มบี ไทย – Speed D+","CIMB Thai – Speed D+","https://www.cimbthai.com/en/personal/products/accounts/savings-account/speed-d-plus-savings-by-cimb-thai.html"],
+  ttbnf: ["ทีทีบี – โนฟิกซ์","ttb – no fixed","https://www.ttbbank.com/th/personal/deposits/savings-account/ttb-no-fixed"],
+  ttbr:  ["ทีทีบี – ตารางอัตราดอกเบี้ยเงินฝาก","ttb – deposit rate table","https://www.ttbbank.com/th/rates/deposit-interest-rates"],
+  ttbfs: ["ทีทีบี – Fact sheet ttb me save (6 ส.ค. 2569)","ttb – ttb me save fact sheet (6 Aug 2026)","https://media.ttbbank.com/1/document/deposit/th-fact-sheet-ttb-me-save-060826.pdf"],
+  uob:   ["ยูโอบี – เงื่อนไขบัญชี TMRW Savings","UOB – TMRW Savings terms","https://www.uob.co.th/personal/ebank/tmrw/deposit-new-term.page"],
+  tisco: ["ทิสโก้ – อัตราดอกเบี้ยเงินฝาก","TISCO – deposit rates","https://www.tisco.co.th/en/rates/deposits"],
+  lh:    ["แลนด์ แอนด์ เฮ้าส์ – บียู ริช","LH Bank – B YOU RICH","https://www.lhbank.co.th/th/personal/deposits/pro-fit-digital-savings-detail/"],
+  tcr:   ["ไทยเครดิต – ตารางอัตราดอกเบี้ย","Thai Credit – rate table","https://www.thaicreditbank.com/"],
+  bbl:   ["กรุงเทพ – อัตราดอกเบี้ยเงินฝาก","Bangkok Bank – deposit rates","https://www.bangkokbank.com/th-TH/Personal/Other-Services/View-Rates/Deposit-Interest-Rates"],
+  kbank: ["กสิกรไทย – ประกาศ อ 009/2569","KBank – announcement 009/2569","https://www.kasikornbank.com/th/rate/deposits/09052026-deposit-rates-th.pdf"],
+  mb:    ["Money Buffalo – บัญชีเงินฝากดิจิทัล 2569 (17 ก.พ. 2569)","Money Buffalo – digital savings 2026 (17 Feb 2026)","https://www.moneybuffalo.in.th/saving-tips/digital-bank-fixed-deposit-interest-rate"],
+  tr:    ["ไทยรัฐ – สรุปเงินฝากดิจิทัล (26 มี.ค. 2569)","Thairath – digital deposit roundup (26 Mar 2026)","https://en.thairath.co.th/money/personal_finance/financial_planning/2922715"],
+  kp:    ["Kapook – เงินฝากดิจิทัลดอกเบี้ยสูง (9 มี.ค. 2569)","Kapook – high-interest digital deposits (9 Mar 2026)","https://money.kapook.com/view299351.html"],
+  pp:    ["Punpro – แอปฝากเงินดิจิทัล (7 ก.พ. 2569)","Punpro – digital savings apps (7 Feb 2026)","https://www.punpro.com/p/7-bank-application-moneysavings-in-Thailand-2026"]
 };
 const SRC_KEYS = Object.keys(SRC);
 
 // ================= ข้อมูลบัญชี =================
-// tiers = ขั้นบันได [ยอดเงินถึง, อัตรา % ต่อปี] · I = ส่วนที่เกิน
-// date = วันที่แสดงในตาราง (สั้น) · announced = รายละเอียดเต็ม
+// tiers = ขั้นบันได [ยอดเงินถึง, อัตรา % ต่อปี] · I = ส่วนที่เกิน · en = ข้อความภาษาอังกฤษ
 const I = Infinity;
 const PRODUCTS = [
-  {bank:"เกียรตินาคินภัทร", name:"Dime! Save", verified:true, src:["dime"],
+  {bank:"เกียรตินาคินภัทร", short:"เกียรตินาคิน", name:"Dime! Save", verified:true, src:["dime"],
    tiers:[[1e4,3.00],[3e5,1.00],[I,0.20]], rateText:"10,000 แรก 3.00% · 10,000–300,000 ได้ 1.00% · ส่วนเกิน 0.20%",
-   date:"ไม่ระบุ", announced:"หน้าเว็บไม่ระบุวันที่", note:"จ่ายดอกเบี้ย มิ.ย. และ ธ.ค."},
-  {bank:"เกียรตินาคินภัทร", name:"KKP Savvy", verified:false, src:["mb","pp"],
+   date:"ไม่ระบุ", announced:"หน้าเว็บไม่ระบุวันที่", note:"จ่ายดอกเบี้ย มิ.ย. และ ธ.ค.",
+   en:{bank:"Kiatnakin Phatra (KKP)", short:"KKP", rateText:"First 10,000: 3.00% · 10,000–300,000: 1.00% · above: 0.20%",
+       date:"Not stated", announced:"No date on the product page", note:"Interest paid in Jun and Dec"}},
+  {bank:"เกียรตินาคินภัทร", short:"เกียรตินาคิน", name:"KKP Savvy", verified:false, src:["mb","pp"],
    tiers:[[1e4,0.20],[2e5,1.30],[2e6,1.40],[5e6,1.45],[I,0.50]], bonusTiers:[[1e4,0.50],[2e5,1.45],[2e6,1.55],[5e6,1.60],[I,0.65]],
    rateText:"10,000–200,000 ได้ 1.30% · 200,000–2 ล้าน 1.40% · 2–5 ล้าน 1.45% · ส่วนเกิน 0.50% · รวมโบนัสสูงสุด 1.60%",
-   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)", note:"โบนัสเมื่อคงเงินครบ 365 วัน"},
-  {bank:"ไทยเครดิต", name:"Alpha", verified:false, src:["tcr","mb","kp"],
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)", note:"โบนัสเมื่อคงเงินครบ 365 วัน",
+   en:{bank:"Kiatnakin Phatra (KKP)", short:"KKP", rateText:"10,000–200,000: 1.30% · 200,000–2M: 1.40% · 2–5M: 1.45% · above: 0.50% · up to 1.60% with bonus",
+       date:"Not found", announced:"No bank notice found (figures from a Feb 2026 article)", note:"Bonus when funds are held for 365 days"}},
+  {bank:"ไทยเครดิต", short:"ไทยเครดิต", name:"Alpha", verified:false, src:["tcr","mb","kp"],
    tiers:[[5e5,1.60],[I,0.40]], rateText:"500,000 แรก 1.60% · ส่วนเกิน 0.40%",
-   date:"30 ต.ค. 69", announced:"มีผล 30 ต.ค. 2569 (ออมทรัพย์ 0.20–1.60%)", note:"เกณฑ์ยอดเงินจากบทความ · เปิดผ่านแอป alpha"},
-  {bank:"อิสลามแห่งประเทศไทย", name:"ibank e-Savings", verified:false, src:["kp","tr"],
+   date:"30 ต.ค. 69", announced:"มีผล 30 ต.ค. 2569 (ออมทรัพย์ 0.20–1.60%)", note:"เกณฑ์ยอดเงินจากบทความ · เปิดผ่านแอป alpha",
+   en:{bank:"Thai Credit Bank", short:"Thai Credit", name:"Alpha Savings", rateText:"First 500,000: 1.60% · above: 0.40%",
+       date:"30 Oct 2026", announced:"Effective 30 Oct 2026 (savings 0.20–1.60%)", note:"Balance bands from articles · open via the alpha app"}},
+  {bank:"อิสลามแห่งประเทศไทย", short:"ไอแบงก์", name:"ibank e-Savings", verified:false, src:["kp","tr"],
    tiers:[[2e4,2.20],[4e5,1.55],[I,0.50]], rateText:"20,000 แรก 2.20% · 20,000–400,000 ได้ 1.55% · ส่วนเกิน 0.50%",
-   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ มี.ค. 2569)", note:"ผลตอบแทนคาดหวังตามหลักศาสนาอิสลาม ไม่รับประกัน"},
-  {bank:"ยูโอบี", name:"TMRW Savings", verified:true, src:["uob"],
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ มี.ค. 2569)", note:"ผลตอบแทนคาดหวังตามหลักศาสนาอิสลาม ไม่รับประกัน",
+   en:{bank:"Islamic Bank of Thailand", short:"ibank", rateText:"First 20,000: 2.20% · 20,000–400,000: 1.55% · above: 0.50%",
+       date:"Not found", announced:"No bank notice found (figures from a Mar 2026 article)", note:"Expected Sharia-based return, not guaranteed"}},
+  {bank:"ยูโอบี", short:"ยูโอบี", name:"TMRW Savings", verified:true, src:["uob"],
    tiers:[[I,1.00]], bonusTiers:[[2e6,1.50],[I,1.00]], rateText:"ปกติ 1.00% · รวมโบนัส 1.50% (2 ล้านแรก)",
-   date:"1 ต.ค. 67", announced:"ประกาศ 15 ส.ค. 2567 · มีผล 1 ต.ค. 2567 (ฉบับล่าสุดที่พบ)", note:"โบนัสเมื่อยอดเฉลี่ยเดือนนี้ ≥ เดือนก่อน"},
-  {bank:"ทิสโก้", name:"TISCO e-Savings", verified:false, src:["tisco","mb"],
+   date:"1 ต.ค. 67", announced:"ประกาศ 15 ส.ค. 2567 · มีผล 1 ต.ค. 2567 (ฉบับล่าสุดที่พบ)", note:"โบนัสเมื่อยอดเฉลี่ยเดือนนี้ ≥ เดือนก่อน",
+   en:{bank:"UOB", short:"UOB", rateText:"Base 1.00% · 1.50% with bonus (first 2M)",
+       date:"1 Oct 2024", announced:"Announced 15 Aug 2024 · effective 1 Oct 2024 (latest found)", note:"Bonus if this month's average balance ≥ last month's"}},
+  {bank:"ทิสโก้", short:"ทิสโก้", name:"TISCO e-Savings", verified:false, src:["tisco","mb"],
    tiers:[[1e6,1.35],[I,0.50]], rateText:"1 ล้านแรก 1.35% · ส่วนเกิน 0.50%",
-   date:"1 ส.ค. 69", announced:"มีผล 1 ส.ค. 2569 (ช่วงอัตรา 0.50–1.35%)", note:"เกณฑ์ 1 ล้านบาทจากบทความ"},
-  {bank:"ไทยพาณิชย์", name:"ออมทรัพย์อีซี่", verified:true, src:["scb","scbr"],
+   date:"1 ส.ค. 69", announced:"มีผล 1 ส.ค. 2569 (ช่วงอัตรา 0.50–1.35%)", note:"เกณฑ์ 1 ล้านบาทจากบทความ",
+   en:{bank:"TISCO Bank", short:"TISCO", rateText:"First 1M: 1.35% · above: 0.50%",
+       date:"1 Aug 2026", announced:"Effective 1 Aug 2026 (range 0.50–1.35%)", note:"1M band from articles"}},
+  {bank:"ไทยพาณิชย์", short:"ไทยพาณิชย์", name:"ออมทรัพย์อีซี่", verified:true, src:["scb","scbr"],
    tiers:[[1e6,1.25],[I,0.35]], rateText:"1 ล้านแรก 1.25% · ส่วนเกิน 0.35%",
-   date:"23 พ.ค. 69", announced:"อัตรา ณ 23 พ.ค. 2569 · ประกาศธนาคารล่าสุด 30 ต.ค. 2569", note:"จ่ายดอกเบี้ยทุกเดือน"},
-  {bank:"กรุงศรี", name:"มีแต่ได้ (ออนไลน์)", verified:true, src:["bay","bayr"],
+   date:"23 พ.ค. 69", announced:"อัตรา ณ 23 พ.ค. 2569 · ประกาศธนาคารล่าสุด 30 ต.ค. 2569", note:"จ่ายดอกเบี้ยทุกเดือน",
+   en:{bank:"SCB", short:"SCB", name:"EASY Savings", rateText:"First 1M: 1.25% · above: 0.35%",
+       date:"23 May 2026", announced:"Rates as of 23 May 2026 · latest bank notice 30 Oct 2026", note:"Interest paid monthly"}},
+  {bank:"กรุงศรี", short:"กรุงศรี", name:"มีแต่ได้ (ออนไลน์)", verified:true, src:["bay","bayr"],
    tiers:[[1e6,1.25],[2e6,0.90],[50e6,0.50],[I,0.25]], rateText:"1 ล้านแรก 1.25% · 1–2 ล้าน 0.90% · 2–50 ล้าน 0.50% · ส่วนเกิน 0.25%",
-   date:"1 พ.ย. 69", announced:"ประกาศ 30 ต.ค. 2569 · มีผล 1 พ.ย. 2569", note:"จ่ายดอกเบี้ยทุกเดือน"},
-  {bank:"กรุงศรี", name:"Kept Grow", verified:true, src:["kept"], kept:true,
+   date:"1 พ.ย. 69", announced:"ประกาศ 30 ต.ค. 2569 · มีผล 1 พ.ย. 2569", note:"จ่ายดอกเบี้ยทุกเดือน",
+   en:{bank:"Krungsri", short:"Krungsri", name:"Mee Tae Dai (online)", rateText:"First 1M: 1.25% · 1–2M: 0.90% · 2–50M: 0.50% · above: 0.25%",
+       date:"1 Nov 2026", announced:"Announced 30 Oct 2026 · effective 1 Nov 2026", note:"Interest paid monthly"}},
+  {bank:"กรุงศรี", short:"กรุงศรี", name:"Kept Grow", verified:true, src:["kept"], kept:true,
    rateText:"เดือน 1–18 ได้ 1.25% · เดือน 19–24 ได้ 1.35% · สูงสุด 2 ล้าน",
-   date:"5 มิ.ย. 69", announced:"มีผลกับเงินฝากใหม่ตั้งแต่ 5 มิ.ย. 2569", note:"ขั้นต่ำ 1,000 บาท"},
-  {bank:"กรุงเทพ", name:"บัวหลวง e-Savings", verified:false, src:["mb","tr","bbl"],
+   date:"5 มิ.ย. 69", announced:"มีผลกับเงินฝากใหม่ตั้งแต่ 5 มิ.ย. 2569", note:"ขั้นต่ำ 1,000 บาท",
+   en:{bank:"Krungsri", short:"Krungsri", rateText:"Months 1–18: 1.25% · months 19–24: 1.35% · max 2M",
+       date:"5 Jun 2026", announced:"Applies to new deposits from 5 Jun 2026", note:"Minimum 1,000 THB"}},
+  {bank:"กรุงเทพ", short:"กรุงเทพ", name:"บัวหลวง e-Savings", verified:false, src:["mb","tr","bbl"],
    tiers:[[1e6,1.35],[I,0.35]], rateText:"1 ล้านแรก 1.35% · ส่วนเกิน 0.35%",
-   date:"15 ต.ค. 69", announced:"ประกาศธนาคารล่าสุด มีผล 15 ต.ค. 2569 (ยังยืนยันอัตราบัญชีนี้ไม่ได้)"},
-  {bank:"กสิกรไทย", name:"K-eSavings", verified:false, src:["mb","kp","kbank"],
+   date:"15 ต.ค. 69", announced:"ประกาศธนาคารล่าสุด มีผล 15 ต.ค. 2569 (ยังยืนยันอัตราบัญชีนี้ไม่ได้)",
+   en:{bank:"Bangkok Bank", short:"Bangkok Bank", name:"Bualuang e-Savings", rateText:"First 1M: 1.35% · above: 0.35%",
+       date:"15 Oct 2026", announced:"Latest bank notice effective 15 Oct 2026 (this account's rate not confirmed)"}},
+  {bank:"กสิกรไทย", short:"กสิกรไทย", name:"K-eSavings", verified:false, src:["mb","kp","kbank"],
    tiers:[[5e5,1.35],[I,0.35]], rateText:"500,000 แรก 1.35% · ส่วนเกิน 0.35%",
-   date:"9 พ.ค. 69", announced:"ประกาศธนาคารล่าสุดที่พบ มีผล 9 พ.ค. 2569"},
-  {bank:"กสิกรไทย", name:"MAKE by KBank", verified:false, src:["mb","pp","kbank"],
+   date:"9 พ.ค. 69", announced:"ประกาศธนาคารล่าสุดที่พบ มีผล 9 พ.ค. 2569",
+   en:{bank:"KASIKORNBANK", short:"KBank", rateText:"First 500,000: 1.35% · above: 0.35%",
+       date:"9 May 2026", announced:"Latest bank notice found, effective 9 May 2026"}},
+  {bank:"กสิกรไทย", short:"กสิกรไทย", name:"MAKE by KBank", verified:false, src:["mb","pp","kbank"],
    tiers:[[5e5,1.35],[I,0.35]], rateText:"500,000 แรก 1.35% · ส่วนเกิน 0.35%",
-   date:"9 พ.ค. 69", announced:"ประกาศธนาคารล่าสุดที่พบ มีผล 9 พ.ค. 2569", note:"ใช้คู่กับแอป K PLUS"},
-  {bank:"กรุงไทย", name:"NEXT Savings", verified:false, src:["mb"],
+   date:"9 พ.ค. 69", announced:"ประกาศธนาคารล่าสุดที่พบ มีผล 9 พ.ค. 2569", note:"ใช้คู่กับแอป K PLUS",
+   en:{bank:"KASIKORNBANK", short:"KBank", rateText:"First 500,000: 1.35% · above: 0.35%",
+       date:"9 May 2026", announced:"Latest bank notice found, effective 9 May 2026", note:"Used with the K PLUS app"}},
+  {bank:"กรุงไทย", short:"กรุงไทย", name:"NEXT Savings", verified:false, src:["mb"],
    tiers:[[5e5,1.25],[1e6,0.80],[I,0.35]], rateText:"500,000 แรก 1.25% · 500,000–1 ล้าน 0.80% · ส่วนเกิน 0.35%",
-   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)"},
-  {bank:"ซีไอเอ็มบี ไทย", name:"Speed D+", verified:true, src:["cimb"],
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)",
+   en:{bank:"Krungthai", short:"Krungthai", rateText:"First 500,000: 1.25% · 500,000–1M: 0.80% · above: 0.35%",
+       date:"Not found", announced:"No bank notice found (figures from a Feb 2026 article)"}},
+  {bank:"ซีไอเอ็มบี ไทย", short:"ซีไอเอ็มบี", name:"Speed D+", verified:true, src:["cimb"],
    tiers:[[1e5,0.25],[3e6,1.05],[20e6,1.10],[I,0.50]], bonusTiers:[[1e5,0.45],[3e6,1.25],[20e6,1.30],[I,0.70]],
    rateText:"ต่ำกว่า 100,000 ได้ 0.25% · 100,000–3 ล้าน 1.05% · 3–20 ล้าน 1.10% · ส่วนเกิน 0.50% · รวมโบนัสสูงสุด 1.40%",
-   date:"1 ต.ค. 69", announced:"มีผล 1 ต.ค. 2569", note:"โบนัสสำหรับลูกค้าใหม่/Preferred ยอด 3 ล้านขึ้นไป 4 เดือน"},
-  {bank:"ซีไอเอ็มบี ไทย", name:"Chill D", verified:false, src:["mb","pp"],
+   date:"1 ต.ค. 69", announced:"มีผล 1 ต.ค. 2569", note:"โบนัสสำหรับลูกค้าใหม่/Preferred ยอด 3 ล้านขึ้นไป 4 เดือน",
+   en:{bank:"CIMB Thai", short:"CIMB", rateText:"Under 100,000: 0.25% · 100,000–3M: 1.05% · 3–20M: 1.10% · above: 0.50% · up to 1.40% with bonus",
+       date:"1 Oct 2026", announced:"Effective 1 Oct 2026", note:"Bonus for new/Preferred customers with 3M+, for 4 months"}},
+  {bank:"ซีไอเอ็มบี ไทย", short:"ซีไอเอ็มบี", name:"Chill D", verified:false, src:["mb","pp"],
    tiers:[[1e4,0.50],[5e4,1.00],[1e5,1.50],[I,0.20]], rateText:"10,000 แรก 0.50% · 10,000–50,000 ได้ 1.00% · 50,000–100,000 ได้ 1.50% · ส่วนเกิน 0.20%",
-   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)"},
-  {bank:"ทีทีบี", name:"ttb me save", verified:true, src:["ttbr","ttbfs"],
+   date:"ไม่พบ", announced:"ไม่พบประกาศธนาคาร (ตัวเลขจากบทความ ก.พ. 2569)",
+   en:{bank:"CIMB Thai", short:"CIMB", rateText:"First 10,000: 0.50% · 10,000–50,000: 1.00% · 50,000–100,000: 1.50% · above: 0.20%",
+       date:"Not found", announced:"No bank notice found (figures from a Feb 2026 article)"}},
+  {bank:"ทีทีบี", short:"ทีทีบี", name:"ttb me save", verified:true, src:["ttbr","ttbfs"],
    tiers:[[2e6,1.50],[I,0.25]], rateText:"2 ล้านแรก 1.50% · ส่วนเกิน 0.25%*",
    date:"1 พ.ย. 69", announced:"มีผล 1 พ.ย. 2569 (สูงสุด 1.50%) · Fact sheet 6 ส.ค. 2569",
-   note:"*ไม่พบอัตราส่วนเกิน 2 ล้าน ใช้อัตราออมทรัพย์ทั่วไป 0.25% · ไม่มีบัตร ATM"},
-  {bank:"ทีทีบี", name:"โนฟิกซ์", verified:true, src:["ttbnf","ttbr"],
+   note:"*ไม่พบอัตราส่วนเกิน 2 ล้าน ใช้อัตราออมทรัพย์ทั่วไป 0.25% · ไม่มีบัตร ATM",
+   en:{bank:"ttb", short:"ttb", rateText:"First 2M: 1.50% · above: 0.25%*",
+       date:"1 Nov 2026", announced:"Effective 1 Nov 2026 (max 1.50%) · fact sheet 6 Aug 2026",
+       note:"*Rate above 2M not found; standard savings rate 0.25% used · no ATM card"}},
+  {bank:"ทีทีบี", short:"ทีทีบี", name:"โนฟิกซ์", verified:true, src:["ttbnf","ttbr"],
    tiers:[[1e6,0.10],[5e6,1.00],[30e6,1.30],[I,0.50]], bonusTiers:[[1e6,0.45],[5e6,1.35],[30e6,1.65],[I,0.85]],
    rateText:"1 ล้านแรก 0.10% · 1–5 ล้าน 1.00% · 5–30 ล้าน 1.30% · ส่วนเกิน 0.50%",
-   date:"1 พ.ย. 69", announced:"มีผล 1 พ.ย. 2569", note:"โบนัส +0.35% สำหรับ Reserve Diamond หรือถือกองทุนผ่าน ttb ≥ 5 ล้าน"},
-  {bank:"แลนด์ แอนด์ เฮ้าส์", name:"บียู ริช", verified:true, src:["lh"],
+   date:"1 พ.ย. 69", announced:"มีผล 1 พ.ย. 2569", note:"โบนัส +0.35% สำหรับ Reserve Diamond หรือถือกองทุนผ่าน ttb ≥ 5 ล้าน",
+   en:{bank:"ttb", short:"ttb", name:"ttb no fixed", rateText:"First 1M: 0.10% · 1–5M: 1.00% · 5–30M: 1.30% · above: 0.50%",
+       date:"1 Nov 2026", announced:"Effective 1 Nov 2026", note:"+0.35% bonus for Reserve Diamond or 5M+ in funds via ttb"}},
+  {bank:"แลนด์ แอนด์ เฮ้าส์", short:"LH Bank", name:"บียู ริช", verified:true, src:["lh"],
    tiers:[[2e6,1.25],[I,0.25]], rateText:"2 ล้านแรก 1.25% · ส่วนเกิน 0.25%*",
-   date:"3 ส.ค. 69", announced:"ประกาศ 3 ส.ค. 2569", note:"*ส่วนเกินใช้อัตราออมทรัพย์ทั่วไป 0.25% · จ่ายดอกเบี้ยปีละ 2 ครั้ง"}
+   date:"3 ส.ค. 69", announced:"ประกาศ 3 ส.ค. 2569", note:"*ส่วนเกินใช้อัตราออมทรัพย์ทั่วไป 0.25% · จ่ายดอกเบี้ยปีละ 2 ครั้ง",
+   en:{bank:"LH Bank", short:"LH Bank", name:"B YOU RICH", rateText:"First 2M: 1.25% · above: 0.25%*",
+       date:"3 Aug 2026", announced:"Announced 3 Aug 2026", note:"*Standard savings rate 0.25% used above 2M · interest paid twice a year"}}
 ];
 
 // ================= การคำนวณ =================
@@ -370,34 +465,56 @@ function simulate(p, a, m, bonus){
   return {annual, gross, tax, net:gross-tax, final:a+gross-tax, eff:a>0?annual/a*100:0, years, max:maxRate(p,bonus)};
 }
 
-// ================= แสดงผล =================
-const fmt0=n=>Math.round(n).toLocaleString("th-TH");
-const fmt2=n=>n.toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2});
-const pct=n=>n.toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2})+"%";
+// ================= ภาษา =================
+let lang = "th";
+try { lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "th"; } catch(e){}
+if(!T[lang]) lang="th";
+const t = k => T[lang][k];
+const L = (p,k) => (lang==="en" && p.en && p.en[k]!==undefined) ? p.en[k] : p[k];
+
+const fmt0=n=>Math.round(n).toLocaleString("en-US");
+const fmt2=n=>n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct=n=>fmt2(n)+"%";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
 const MEDAL=["🥇","🥈","🥉"];
-function period(m){ const y=Math.floor(m/12), r=m%12; if(m<12) return `${m} เดือน`; return r?`${y} ปี ${r} เดือน`:`${y} ปี`; }
-function compactBaht(n){ return n>=1e6 ? (n/1e6).toLocaleString("th-TH")+" ล้าน" : fmt0(n); }
+function period(m){ const y=Math.floor(m/12), r=m%12; if(m<12) return T[lang].m(m); return r?T[lang].ym(y,r):T[lang].y(y); }
+function compactBaht(n){ return n>=1e6 ? T[lang].million((n/1e6).toLocaleString("en-US")) : fmt0(n); }
 
+// ================= UI =================
 const $amount=document.getElementById("amount"), $months=document.getElementById("months"),
       $bonus=document.getElementById("bonus"), $ver=document.getElementById("verifiedOnly"),
       $toggle=document.getElementById("toggleAll");
 let showAll=false, selected=null, openInfo=null;
-
 const AMOUNTS=[10000,100000,500000,1000000,2000000,5000000,10000000];
 const MONTHS=[3,6,12,24,36,60];
-document.getElementById("amountChips").innerHTML = AMOUNTS.map(v=>`<button class="chip" data-a="${v}">${compactBaht(v)}</button>`).join("");
-document.getElementById("monthChips").innerHTML = MONTHS.map(v=>`<button class="chip" data-m="${v}">${period(v)}</button>`).join("");
+
+function applyStatic(){
+  document.documentElement.lang = lang;
+  document.title = t("docTitle");
+  document.querySelectorAll("[data-i]").forEach(el=>{ el.innerHTML = t(el.dataset.i); });
+  document.getElementById("checked").textContent = t("checked");
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on", b.dataset.lang===lang));
+  document.getElementById("amountChips").innerHTML = AMOUNTS.map(v=>`<button class="chip" data-a="${v}">${compactBaht(v)}</button>`).join("");
+  document.getElementById("monthChips").innerHTML = MONTHS.map(v=>`<button class="chip" data-m="${v}">${period(v)}</button>`).join("");
+  document.getElementById("sources").innerHTML = SRC_KEYS.map(k=>
+    `<li><a href="${SRC[k][2]}" target="_blank" rel="noopener">${esc(lang==="en"?SRC[k][1]:SRC[k][0])}</a></li>`).join("")
+    + `<li>${t("compiled")}</li>`;
+}
+document.querySelector(".lang").addEventListener("click",e=>{
+  const b=e.target.closest("[data-lang]"); if(!b) return;
+  lang=b.dataset.lang; try{ localStorage.setItem("lang",lang); }catch(err){}
+  applyStatic(); render();
+});
+
 document.getElementById("amountChips").addEventListener("click",e=>{const b=e.target.closest("[data-a]"); if(!b) return;
-  $amount.value=Number(b.dataset.a).toLocaleString("th-TH"); render();});
+  $amount.value=Number(b.dataset.a).toLocaleString("en-US"); render();});
 document.getElementById("monthChips").addEventListener("click",e=>{const b=e.target.closest("[data-m]"); if(!b) return;
   $months.value=b.dataset.m; render();});
-
 const readAmount=()=>Math.max(0,Number(($amount.value||"").replace(/[^\d]/g,""))||0);
 const readMonths=()=>Math.min(360,Math.max(1,Math.round(Number(($months.value||"").replace(/[^\d]/g,""))||1)));
 $amount.addEventListener("input",()=>{
   const pos=$amount.value.length-$amount.selectionStart, raw=$amount.value.replace(/[^\d]/g,"").slice(0,12);
-  $amount.value = raw ? Number(raw).toLocaleString("th-TH") : "";
+  $amount.value = raw ? Number(raw).toLocaleString("en-US") : "";
   const np=Math.max(0,$amount.value.length-pos); $amount.setSelectionRange(np,np); render();
 });
 $months.addEventListener("input",()=>{ $months.value=$months.value.replace(/[^\d]/g,"").slice(0,3); render(); });
@@ -410,7 +527,7 @@ document.getElementById("tbody").addEventListener("click",e=>{
 });
 
 function render(){
-  const a=readAmount(), m=readMonths(), bonus=$bonus.checked, comp=m>12;
+  const a=readAmount(), m=readMonths(), bonus=$bonus.checked, comp=m>12, X=T[lang];
   document.querySelectorAll("#amountChips .chip").forEach(c=>c.classList.toggle("on",Number(c.dataset.a)===a));
   document.querySelectorAll("#monthChips .chip").forEach(c=>c.classList.toggle("on",Number(c.dataset.m)===m));
 
@@ -418,53 +535,51 @@ function render(){
     .map(p=>({p, r:simulate(p,a,m,bonus), id:p.bank+"|"+p.name}))
     .sort((x,y)=>y.r.net-x.r.net || y.r.max-x.r.max);
   const top=rows.slice(0,10), list=showAll?rows:top;
-  $toggle.textContent = showAll ? "ย่อเหลือ 10 อันดับ" : `ดูทั้งหมด ${rows.length} บัญชี`;
+  $toggle.textContent = showAll ? X.top10 : X.showAll(rows.length);
 
   if(!top.length || a<=0){
-    document.getElementById("hero").innerHTML='<div class="bank">✍️ กรอกยอดเงินฝากก่อนนะ</div>';
+    document.getElementById("hero").innerHTML=`<div class="bank">${X.empty}</div>`;
     ["kpis","tbody","chart","ybody"].forEach(id=>document.getElementById(id).innerHTML=""); return;
   }
   const b=top[0];
 
-  // ---- สรุป ----
   document.getElementById("hero").innerHTML = `
-    <span class="sticker">🏆 คุ้มที่สุด!</span>
-    <div class="who">ฝาก ${fmt0(a)} บาท · ${period(m)} ${comp?'· ทบต้น 🌱':''}</div>
-    <div class="bank">${esc(b.p.bank)} <small>${esc(b.p.name)}</small>
-      ${b.p.verified?'':' <span class="tag warn">⚠️ ควรเช็ก</span>'}</div>
+    <span class="sticker">${X.best}</span>
+    <div class="who">${X.deposit(fmt0(a), period(m))} ${comp?X.comp:''}</div>
+    <div class="bank">${esc(L(b.p,"bank"))} <small>${esc(L(b.p,"name"))}</small>
+      ${b.p.verified?'':` <span class="tag warn">${X.check}</span>`}</div>
     <div class="row">
-      <div><div class="cap">ดอกเบี้ยที่ได้ (หลังภาษี)</div><div class="big">+${fmt2(b.r.net)} ฿</div></div>
-      <div><div class="cap">รับเงินรวม</div><div class="mid">${fmt2(b.r.final)} ฿</div></div>
+      <div><div class="cap">${X.earned}</div><div class="big">+${fmt2(b.r.net)} ฿</div></div>
+      <div><div class="cap">${X.payout}</div><div class="mid">${fmt2(b.r.final)} ฿</div></div>
     </div>`;
 
   document.getElementById("kpis").innerHTML = `
-    <div class="kpi"><div class="ic g">📈</div><div class="k">ดอกเบี้ยต่อปี</div>
-      <div class="v">${fmt2(b.r.annual)} ฿</div><div class="d">เฉลี่ย ${pct(b.r.eff)}</div></div>
-    <div class="kpi"><div class="ic b">💰</div><div class="k">ดอกเบี้ยรวม ${period(m)}</div>
-      <div class="v">${fmt2(b.r.gross)} ฿</div><div class="d">ก่อนหักภาษี</div></div>
-    <div class="kpi"><div class="ic t">🧾</div><div class="k">ภาษี 15%</div>
-      <div class="v ${b.r.tax?'tax':''}">${fmt2(b.r.tax)} ฿</div><div class="d">${b.r.tax?'ดอกเบี้ยเกิน 20,000/ปี':'ไม่เสียภาษี 🎉'}</div></div>
-    <div class="kpi"><div class="ic s">🎉</div><div class="k">รับสุทธิ</div>
-      <div class="v green">${fmt2(b.r.net)} ฿</div><div class="d">หลังหักภาษีแล้ว</div></div>`;
+    <div class="kpi"><div class="ic g">📈</div><div class="k">${X.kYear}</div>
+      <div class="v">${fmt2(b.r.annual)} ฿</div><div class="d">${X.kAvg(pct(b.r.eff))}</div></div>
+    <div class="kpi"><div class="ic b">💰</div><div class="k">${X.kTotal(period(m))}</div>
+      <div class="v">${fmt2(b.r.gross)} ฿</div><div class="d">${X.beforeTax}</div></div>
+    <div class="kpi"><div class="ic t">🧾</div><div class="k">${X.kTax}</div>
+      <div class="v ${b.r.tax?'tax':''}">${fmt2(b.r.tax)} ฿</div><div class="d">${b.r.tax?X.taxed:X.taxFree}</div></div>
+    <div class="kpi"><div class="ic s">🎉</div><div class="k">${X.kNet}</div>
+      <div class="v green">${fmt2(b.r.net)} ฿</div><div class="d">${X.afterTax}</div></div>`;
 
-  // ---- ตาราง ----
   if(!selected || !rows.find(x=>x.id===selected)) selected=b.id;
   document.getElementById("tbody").innerHTML = list.map((x,i)=>{
-    const {p,r}=x, open=openInfo===x.id;
-    const srcs=p.src.map(k=>`<a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a>`).join(" · ");
+    const {p,r}=x, open=openInfo===x.id, note=L(p,"note");
+    const srcs=p.src.map(k=>`<a href="${SRC[k][2]}" target="_blank" rel="noopener">${esc(lang==="en"?SRC[k][1]:SRC[k][0])}</a>`).join(" · ");
     return `<tr class="${i===0?'first':''} ${x.id===selected&&i!==0?'sel':''}">
       <td>${i<3?`<span class="rank">${MEDAL[i]}</span>`:`<span class="rank n">${i+1}</span>`}</td>
-      <td><div class="bname">${esc(p.bank)}</div><div class="pname">${esc(p.name)}
-        <span class="tag ${p.verified?'ok':'warn'}">${p.verified?'✓ ยืนยันแล้ว':'⚠️ ควรเช็ก'}</span></div>
-        <div class="acts no-print"><button class="mini" data-info="${esc(x.id)}">${open?'ซ่อน':'ℹ️ เงื่อนไข'}</button>
-        <button class="mini" data-sel="${esc(x.id)}">🌱 รายปี</button></div></td>
+      <td><div class="bname">${esc(L(p,"bank"))}</div><div class="pname">${esc(L(p,"name"))}
+        <span class="tag ${p.verified?'ok':'warn'}">${p.verified?X.verified:X.check}</span></div>
+        <div class="acts no-print"><button class="mini" data-info="${esc(x.id)}">${open?X.hide:X.details}</button>
+        <button class="mini" data-sel="${esc(x.id)}">${X.byYear}</button></div></td>
       <td class="num">${pct(r.max)}</td>
-      <td class="num"><span class="money">${fmt2(r.net)}</span>${r.tax?`<div class="sm">หักภาษี ${fmt2(r.tax)}</div>`:''}</td>
-      <td class="hide-sm">${esc(p.date)}</td></tr>
+      <td class="num"><span class="money">${fmt2(r.net)}</span>${r.tax?`<div class="sm">${X.taxLine(fmt2(r.tax))}</div>`:''}</td>
+      <td class="hide-sm">${esc(L(p,"date"))}</td></tr>
       ${open?`<tr class="info"><td></td><td colspan="4">
-        📌 ${esc(p.rateText)}<br>
-        ${p.note?`<span class="warnline">${esc(p.note)}</span><br>`:''}
-        📅 ${esc(p.announced)}<br>
+        📌 ${esc(L(p,"rateText"))}<br>
+        ${note?`<span class="warnline">${esc(note)}</span><br>`:''}
+        📅 ${esc(L(p,"announced"))}<br>
         🔗 ${srcs}</td></tr>`:''}`;
   }).join("");
 
@@ -473,48 +588,44 @@ function render(){
 }
 
 function renderYears(x, a, m){
-  document.getElementById("yearTitle").innerHTML = `🌱 เงินงอกเงยรายปี <span class="sm">· ${esc(x.p.bank)} ${esc(x.p.name)}</span>`;
+  const X=T[lang];
+  document.getElementById("yearTitle").innerHTML = `${X.yearTitle} <span class="sm">· ${esc(L(x.p,"bank"))} ${esc(L(x.p,"name"))}</span>`;
   document.getElementById("ybody").innerHTML = x.r.years.map((y,i)=>`<tr>
-      <td>${m>12?`ปีที่ ${i+1}`:period(m)} <span class="sm">(เดือน ${y.from}–${y.to})</span></td>
+      <td>${m>12?X.yearN(i+1):period(m)} <span class="sm">${X.monthsRange(y.from,y.to)}</span></td>
       <td class="num">${fmt2(y.start)}</td><td class="num" style="color:var(--green)">+${fmt2(y.int)}</td>
       <td class="num sm">${y.tax?'-'+fmt2(y.tax):'-'}</td><td class="num"><b>${fmt2(y.end)}</b></td></tr>`).join("")
-    + (x.r.years.length>1?`<tr class="total"><td>รวม</td><td class="num">${fmt2(a)}</td><td class="num" style="color:var(--green)">+${fmt2(x.r.gross)}</td>
+    + (x.r.years.length>1?`<tr class="total"><td>${X.total}</td><td class="num">${fmt2(a)}</td><td class="num" style="color:var(--green)">+${fmt2(x.r.gross)}</td>
        <td class="num">${x.r.tax?'-'+fmt2(x.r.tax):'-'}</td><td class="num">${fmt2(x.r.final)}</td></tr>`:'');
 }
 
-// ---- กราฟแท่งแนวตั้ง ----
 function niceMax(v){ const p=Math.pow(10,Math.floor(Math.log10(v))), f=v/p;
   return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p; }
 function drawChart(top, m){
-  document.getElementById("chartSub").textContent = `· หลังหักภาษี · ฝาก ${period(m)} (บาท)`;
-  const W=960, H=430, L=64, R=12, T=48, B=70, cw=W-L-R, ch=H-T-B;
+  document.getElementById("chartSub").textContent = T[lang].chartSub(period(m));
+  const W=960, H=430, L0=64, R=12, Tp=48, B=70, cw=W-L0-R, ch=H-Tp-B;
   const max=niceMax(Math.max(1,...top.map(x=>x.r.net)));
   const slot=cw/top.length, bw=Math.min(60, slot*0.6);
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="กราฟแท่งเปรียบเทียบดอกเบี้ยสุทธิ">
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${T[lang].chartAria}">
     <defs><linearGradient id="gTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sun)"/><stop offset="1" style="stop-color:var(--bar-top)"/></linearGradient></defs>`;
   for(let g=0; g<=4; g++){
-    const y=T+ch-ch*g/4;
-    s+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="var(--line)" ${g?'stroke-dasharray="3 6"':''}/>`;
-    s+=`<text x="${L-8}" y="${y+4}" text-anchor="end" font-size="12" style="fill:var(--muted)">${fmt0(max*g/4)}</text>`;
+    const y=Tp+ch-ch*g/4;
+    s+=`<line x1="${L0}" y1="${y}" x2="${W-R}" y2="${y}" stroke="var(--line)" ${g?'stroke-dasharray="3 6"':''}/>`;
+    s+=`<text x="${L0-8}" y="${y+4}" text-anchor="end" font-size="12" style="fill:var(--muted)">${fmt0(max*g/4)}</text>`;
   }
   top.forEach((x,i)=>{
-    const cx=L+slot*i+slot/2, h=Math.max(3,ch*x.r.net/max), y=T+ch-h;
-    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="8" fill="${i===0?'url(#gTop)':'var(--bar)'}"><title>${esc(x.p.bank+' '+x.p.name)}: ${fmt2(x.r.net)} บาท</title></rect>`;
+    const cx=L0+slot*i+slot/2, h=Math.max(3,ch*x.r.net/max), y=Tp+ch-h;
+    const full=L(x.p,"bank")+" "+L(x.p,"name");
+    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="8" fill="${i===0?'url(#gTop)':'var(--bar)'}"><title>${esc(full)}: ${fmt2(x.r.net)} ${T[lang].thb}</title></rect>`;
     s+=`<text x="${cx}" y="${y-8}" text-anchor="middle" font-size="13" font-weight="700">${fmt0(x.r.net)}</text>`;
     if(i<3) s+=`<text x="${cx}" y="${y-28}" text-anchor="middle" font-size="20">${MEDAL[i]}</text>`;
-    const SHORT={"เกียรตินาคินภัทร":"เกียรตินาคิน","แลนด์ แอนด์ เฮ้าส์":"LH Bank","อิสลามแห่งประเทศไทย":"ไอแบงก์","ซีไอเอ็มบี ไทย":"ซีไอเอ็มบี"};
-    const bn=SHORT[x.p.bank]||x.p.bank;
-    const pn=x.p.name.length>12?x.p.name.slice(0,11)+"…":x.p.name;
-    s+=`<text x="${cx}" y="${T+ch+22}" text-anchor="middle" font-size="13" font-weight="700">${esc(bn)}</text>`;
-    s+=`<text x="${cx}" y="${T+ch+40}" text-anchor="middle" font-size="12" style="fill:var(--muted)">${esc(pn)}</text>`;
+    const nm=L(x.p,"name"), pn=nm.length>12?nm.slice(0,11)+"…":nm;
+    s+=`<text x="${cx}" y="${Tp+ch+22}" text-anchor="middle" font-size="13" font-weight="700">${esc(L(x.p,"short"))}</text>`;
+    s+=`<text x="${cx}" y="${Tp+ch+40}" text-anchor="middle" font-size="12" style="fill:var(--muted)">${esc(pn)}</text>`;
   });
   document.getElementById("chart").innerHTML = s+`</svg>`;
 }
 
-document.getElementById("sources").innerHTML = SRC_KEYS.map(k=>
-  `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")
-  + `<li>รวบรวมและคำนวณเมื่อ ${CHECKED}</li>`;
-
+applyStatic();
 render();
 </script>
 </body>
